@@ -7,6 +7,7 @@
 
 
 ![LogocUB](../medias/logocub.png)
+![LogocUB](../medias/sit1_1.png)
 
 ##  Sommaire
 
