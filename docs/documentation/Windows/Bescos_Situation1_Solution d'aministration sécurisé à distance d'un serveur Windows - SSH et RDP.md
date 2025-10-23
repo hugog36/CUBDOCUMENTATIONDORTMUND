@@ -41,16 +41,23 @@
 
 - Vérifier dans l’invite de commande:
 
-\`\`\`bash
+```bash
 whoami /user
-\`\`\`
+```
+ 
+![Situation 1](../../medias/sit1_3.png)
+
 
 ---
 
 ## Question 2 : Changer le nom de votre serveur : SeveurPrimaireX (X=1 pour l'étudiant 1, etc.)
 
-- Dans le menu « Serveur local », cliquer sur le nom du serveur d’origine.  
+- Dans le menu « Serveur local », cliquer sur le nom du serveur d’origine.
+
+![Situation 1](../../medias/sit1_4.png)
+
 - Nouveau nom : `SeveurPrimaire8` → faire `OK`.
+
 
 ---
 
@@ -59,26 +66,51 @@ whoami /user
 - Aller dans les paramètres du compte local admin → section « mot de passe » → cliquer sur « modifier »  
 - Nouveau mot de passe :  
 
-\`\`\`
+```
 Jesuisenbtssio2025*-
-\`\`\`
+```
 
+
+
+![Situation 1](../../medias/sit1_5.png)
 ---
 
 ## Question 4 : Modifier le VLAN et l'adresse IP de votre serveur : 192.168.Y.X
 
-- Cliquer sur l’IP par défaut  
-- Clic droit sur « Ethernet » → Propriété → IPV4  
+- Cliquer sur l’IP par défaut
+
+  ![Situation 1](../../medias/sit1_6.png)
+
+- Clic droit sur « Ethernet » → Propriété → IPV4
+
 
 **Configurations réseau :**
 
 - Lucien : 4.1  
-- Hugo : 4.51  
+- Hugo : 4.51
+
+![Situation 1](../../medias/sit1_7.png)
+
 
 **Résultats ping depuis la machine cliente Windows :**  
 
 - Serveur Lucien  
 - Serveur Hugo
+
+![Situation 1](../../medias/sit1_8.png)
+
+Resultats et test
+Résultats ping de la machine cliente Windows vers les serveurs
+
+- Serveur Lucien
+  
+  
+![Situation 1](../../medias/sit1_9.png)
+
+- Serveur Hugo
+
+  
+![Situation 1](../../medias/sit1_10.png)
 
 ---
 
@@ -90,11 +122,17 @@ Jesuisenbtssio2025*-
 
 ## Question 6 : Installer et tester l'accès à distance au serveur Windows2019 via OpenSSH
 
+
+![Situation 1](../../medias/sit1_11.png)
+
 - Ne pas oublier de changer le port par 222 avec :  
 
-\`\`\`bash
+```bash
 -p 222
-\`\`\`
+```
+![Situation 1](../../medias/sit1_12.png)
+
+
 
 ---
 
@@ -110,6 +148,7 @@ Jesuisenbtssio2025*-
 - Nom : `adminssh`  
 - Mot de passe : `Cub_Admin_Ssh_007`
 
+
 ---
 
 ## Question 9 : Tester SSH pour ce nouvel utilisateur et interdire administrateur
@@ -117,12 +156,17 @@ Jesuisenbtssio2025*-
 - Tester la connexion SSH pour `adminssh`  
 - Interdire la connexion SSH pour l’utilisateur `administrateur`.
 
+
+![Situation 1](../../medias/sit1_13.png)
 ---
 
 ## Question 10 : Modifier le port SSH et ajuster le pare-feu
 
 - Modifier le port d’écoute par défaut du service SSH en `222`  
 - Adapter les règles sur le pare-feu Windows en conséquence.
+
+  ![Situation 1](../../medias/sit1_14.png)
+  ![Situation 1](../../medias/sit1_15.png)
 
 ---
 
@@ -136,9 +180,16 @@ Jesuisenbtssio2025*-
 
 - Procédure réalisée et testée.
 
+![Situation 1](../../medias/sit1_16.png)
+
+![Situation 1](../../medias/sit1_17.png)
+
+![Situation 1](../../medias/sit1_18.png)
+
 ---
 
 ## Question 13 : Sécurité du protocole RDP
 
-- RDP chiffre les données échangées (écran, clavier, souris, etc.)  
-- Utilise authentification (mot de passe, certificat, double authentification) pour n’autoriser que les personnes autorisées.
+Le protocole RDP (Remote Desktop Protocol) permet une gestion sécurisée du bureau à distance en chiffrant les données échangées entre l’utilisateur et l’ordinateur distant. Cela protège les informations (écran, clavier, souris, etc.) contre les interceptions.
+Il utilise aussi des mécanismes d’authentification (nom d’utilisateur, mot de passe, voire certificat ou double authentification) pour s'assurer que seule une personne autorisée peut accéder au bureau distant.
+
