@@ -35,7 +35,10 @@
 
 
 
-- Exécuter le fichier « sysprep »  
+- Exécuter le fichier « sysprep »
+
+  ![Situation 1](../../medias/sit1_2.png)
+
 - Vérifier dans l’invite de commande:
 
 \`\`\`bash
