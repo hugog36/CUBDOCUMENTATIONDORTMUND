@@ -6,7 +6,7 @@
 ---
 
 
-![Logo CUB](docs/medias/logocub.png)
+![Logo CUB](../../medias/logocub.png)
 
 
 ## Sommaire
