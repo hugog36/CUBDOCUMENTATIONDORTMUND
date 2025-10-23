@@ -25,29 +25,41 @@
 
 ## Question 1 : ﻿﻿﻿Connectez-vous en SSH puis exécuter et vérifier la version de votre Powershell.
 
-![Logo CUB](../../medias/Powershell_1.png)
+![image](../../medias/Powershell_1.png)
 
-Connexion en SSH sur powershell « powershell »
+- Connexion en SSH sur powershell « powershell »
 
-Version : 5.1.17763.2090
+![image](../../medias/Powershell_2.png)
+
+- Version : 5.1.17763.2090
 
 ---
 
 ## Question 2 : ﻿﻿﻿Comment visualiser sur votre terminal que Powershell est bien exécuté ?
 
-Grâce à l’ajout « PS » à gauche.
+![image](../../medias/Powershell_3.png)
+
+- Grâce à l’ajout « PS » à gauche.
 
 ---
 
 ## Question 3 : ﻿﻿﻿Afficher l'ensemble des alias contenus dans Powershell.
 
-Quelques exemples d’alias dans Powershell.
+![image](../../medias/Powershell_4.png)
+
+ - Quelques exemples d’alias dans Powershell.
+
+![image](../../medias/Powershell_5.png)
+
+![image](../../medias/Powershell_6.png)
 
 ---
 
 ## Question 4 : ﻿﻿﻿Afficher l'aide pour l'utilisation de la commande clear -host.
 
-Affiche les possibilités pour « clear ».
+![image](../../medias/Powershell_7.png)
+
+- Affiche les possibilités pour « clear ».
 
 ---
 
@@ -61,18 +73,26 @@ Affiche les possibilités pour « clear ».
 
 ## Question 6 : ﻿﻿﻿Tester la commande Get-History, quel est l'intérêt d'utiliser cette commande ?
 
-Nous permet de retrouver des commandes que l’on a faites auparavant si nous avons un souci / afficher l’historique des commandes effectuées.
+![image](../../medias/Powershell_8.png)
+
+- Nous permet de retrouver des commandes que l’on a faites auparavant si nous avons un souci / afficher l’historique des commandes effectuées.
 
 ---
 
 ## Question 7 : ﻿﻿﻿Afficher la liste des processus en cours d'exécution sur le serveur Windows2019. En quoi cette information peut être utile en administration système?
 
-Voir tous les processus en cours avec la commande est utile car cela permet d’avoir une vision en temps réel de ce qui tourne sur la machine.  
+![image](../../medias/Powershell_9.png)
+
+- Voir tous les processus en cours avec la commande est utile car cela permet d’avoir une vision en temps réel de ce qui tourne sur la machine.  
 Par exemple, « surveiller notre machine ».
 
 ---
 
 ## Question 8 : ﻿﻿﻿Retrouver les commandes permettant d'afficher page par page la liste des commandes disponibles dans Powershell (l'utilisation d'un pipeline est recommandé).
+
+![image](../../medias/Powershell_10.png)
+
+![image](../../medias/Powershell_11.png)
 
 *(Contenu non précisé)*
 
@@ -80,7 +100,9 @@ Par exemple, « surveiller notre machine ».
 
 ## Question 9 : ﻿﻿﻿Retrouver et tester les commandes permettant de lister, de démarrer et d'arrêter les services.
 
-**Liste des services**
+- Liste des services
+
+![image](../../medias/Powershell_12.png)
 
 ```powershell
 Get-Service
@@ -91,32 +113,44 @@ Get-Service
 Start-Service -Name "NomDuService"
 ```
 
+![image](../../medias/Powershell_13.png)
+
+![image](../../medias/Powershell_14.png)
+
 **Pour arrêter un service :**  
 ```powershell
 Stop-Service -Name "NomDuService"
 ```
+![image](../../medias/Powershell_15.png)
 
 ---
 
 ## Question 10 : ﻿﻿﻿﻿Créer en ligne de commande le dossier « procédures ».
 
-Création du dossier « procédures ».
+- Création du dossier « procédures ».
 
 ```powershell
-New-Item -ItemType Directory -Path "procédures"
+New-Item -name "procedure" -itemtype directory
 ```
 
 ---
 
 ## Question 11 : ﻿﻿﻿﻿Créer avec une commande Powershell un fichier nommé « liste des procédures. txt »
 
-Création du fichier « liste des procédures ».
+- Création du fichier « liste des procédures ».
+
+
 
 ```powershell
-New-Item -ItemType File -Path "liste des procédures.txt"
+New-Item -name "liste des procedures.txt" -itemtype file
 ```
 
+
+
+
+
 Nous pouvons voir notre fichier créé.
+
 
 ---
 
