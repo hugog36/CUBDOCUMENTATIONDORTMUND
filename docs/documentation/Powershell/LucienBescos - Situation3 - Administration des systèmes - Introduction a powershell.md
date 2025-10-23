@@ -132,10 +132,12 @@ Stop-Service -Name "NomDuService"
 ```powershell
 New-Item -name "procedure" -itemtype directory
 ```
-
+![image](../../medias/Powershell_22.png)
 ---
 
 ## Question 11 : ﻿﻿﻿﻿Créer avec une commande Powershell un fichier nommé « liste des procédures. txt »
+
+![image](../../medias/Powershell_16.png)
 
 - Création du fichier « liste des procédures ».
 
@@ -145,29 +147,29 @@ New-Item -name "procedure" -itemtype directory
 New-Item -name "liste des procedures.txt" -itemtype file
 ```
 
+- Nous pouvons voir notre fichier créé.
 
-
-
-
-Nous pouvons voir notre fichier créé.
+![image](../../medias/Powershell_17.png)
 
 
 ---
 
 ## Question 12 :﻿﻿﻿﻿ Ajouter les deux lignes suivantes dans le fichier nommé « ListeProcédures.txt»
 
-Ajout des lignes dans le fichier en question.
+- Ajout des lignes dans le fichier en question.
 
-```powershell
-Add-Content -Path "ListeProcédures.txt" -Value "Ligne 1"
-Add-Content -Path "ListeProcédures.txt" -Value "Ligne 2"
-```
+![image](../../medias/Powershell_18.png)
+
+![image](../../medias/Powershell_19.png)
 
 ---
 
 ## Question 13 :﻿﻿﻿﻿ Réaliser une copie du fichier « ListeProcédures.txt» vers un nouveau fichier de sauvegarde nommé « ListeProcéduresSauvegarde.txt ».
 
-Nous pouvons voir que nous avons bien copié le fichier en question vers la bonne destination et que tous les éléments présents ont bien été « sauvegardés ».
+
+![image](../../medias/Powershell_20.png)
+
+- Nous pouvons voir que nous avons bien copié le fichier en question vers la bonne destination et que tous les éléments présents ont bien été « sauvegardés ».
 
 ```powershell
 Copy-Item -Path "ListeProcédures.txt" -Destination "ListeProcéduresSauvegarde.txt"
