@@ -28,7 +28,14 @@
 
 ## Question 1 : Réaliser un « sysprep » afin de réinitialiser le SID de l'OS Windows 2019
 
-- Se rendre dans `Disque local/Windows/System32/Sysprep`  
+- Se rendre dans `Disque local/Windows/System32/Sysprep`
+
+
+  ![sit1](../medias/sit1_1.png)
+
+
+
+  
 - Exécuter le fichier « sysprep »  
 - Vérifier dans l’invite de commande:
 
