@@ -32,12 +32,7 @@
 - Se rendre dans `Disque local/Windows/System32/Sysprep`
 
 
-<img width="387" height="213" alt="sit1_1" src="https://github.com/user-attachments/assets/9bdb74b1-3ff1-47e2-a2d8-9c3c009535c5" />br
 
-<img width="369" height="274" alt="sit1_2" src="https://github.com/user-attachments/assets/e92bddba-9f01-436c-a140-b0cebf22935e" />
-
-
-  
 - Exécuter le fichier « sysprep »  
 - Vérifier dans l’invite de commande:
 
