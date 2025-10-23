@@ -32,8 +32,7 @@
 - Se rendre dans `Disque local/Windows/System32/Sysprep`
 
 
-![situation1](medias/sit1_1.png)
-
+<img width="387" height="213" alt="sit1_1" src="https://github.com/user-attachments/assets/9bdb74b1-3ff1-47e2-a2d8-9c3c009535c5" />
 
 
   
