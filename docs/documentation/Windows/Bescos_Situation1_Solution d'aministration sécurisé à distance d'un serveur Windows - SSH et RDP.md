@@ -1,4 +1,4 @@
-# Situation 0 – CUB - Tables réseaux / NAT / Routage
+# Situation 1 – Solution d'aministration sécurisé à distance d'un serveur Windows - SSH et RDP
 
 **Contexte :** CUB  
 **Réalisé par :** Lucien BESCOS  
@@ -8,215 +8,136 @@
 
 ![LogocUB](../medias/logocub.png)
 
-##  Sommaire
 
-- [Contexte : CUB](#contexte--cub)
-- [Plan d’adressage](#plan-dadressage)
-- [Table de routage – Pare-feu](#table-de-routage--pare-feu)
-- [Table de routage – Multilayer](#table-de-routage--multilayer)
-- [Table de routage NAT](#table-de-routage-nat)
-- [Commandes effectuées sur les équipements réseau](#commandes-effectuées-sur-les-équipements-réseau)
-  - [Switch Layer 2](#switch-layer-2)
-  - [Switch Layer 3](#switch-layer-3)
-  - [Pare-feu](#pare-feu)
+## Sommaire
 
----
-
-##  Contexte : CUB
-
-Ce projet consiste à la mise en place d’une infrastructure réseau complète pour le contexte **CUB**, incluant la configuration du routage, des VLANs, du NAT, du pare-feu et de l’accès distant SSH.
-
----
-
-##  Plan d’adressage
-
-Pour le VLAN **Production**, nous avons besoin de **120 hôtes**.  
-Nous déterminons donc le masque de sous-réseau approprié :
-
-> Calcul : 2⁷ – 2 = 126 hôtes disponibles  
-> Masque : `/25` (soit `255.255.255.128`)
-
-| VLAN | @Réseau        | Masque            | @Diffusion     | @1ère IP        | @Passerelle     |
-|------|----------------|-------------------|----------------|-----------------|-----------------|
-| Production 54 | 192.168.4.0   | 255.255.255.128 | 192.168.4.127  | 192.168.4.1     | 192.168.4.126   |
-| Client 10     | 192.168.4.128 | 255.255.255.192 | 192.168.4.191  | 192.168.4.129   | 192.168.4.190   |
-| Admin Sys 20  | 192.168.4.192 | 255.255.255.240 | 192.168.4.207  | 192.168.4.193   | 192.168.4.206   |
+- [Question 1 : Sysprep Windows 2019](#question-1-réaliser-un-sysprep-afin-de-réinitialiser-le-sid-de-los-windows-2019)
+- [Question 2 : Changer le nom du serveur](#question-2-changer-le-nom-de-votre-serveur-seveurprimairex-x1-pour-létudiant-1-etc)
+- [Question 3 : Modifier le mot de passe administrateur](#question-3-modifier-le-mot-de-passe-du-compte-administrateur-local-pour-respecter-les-recommandations-de-lansi)
+- [Question 4 : Modifier le VLAN et l'adresse IP](#question-4-modifier-le-vlan-et-ladresse-ip-de-votre-serveur-192168yx)
+- [Question 5 : Connexion sécurisée via SSH](#question-5-rédiger-la-procédure-dinstallation-de-la-connexion-sécurisée-à-distance-via-ssh)
+- [Question 6 : Accès distant via OpenSSH](#question-6-installer-et-tester-laccès-à-distance-au-serveur-windows2019-via-openssh)
+- [Question 7 : Sécurité SSH](#question-7-en-quoi-lutilisation-du-protocole-ssh-permet-til-dassurer-une-intégrité-des-communications)
+- [Question 8 : Création d'un utilisateur](#question-8-créer-un-nouvel-utilisateur-sous-windows-2019)
+- [Question 9 : Tester SSH et interdire administrateur](#question-9-tester-la-connexion-ssh-pour-ce-nouvel-utilisateur-puis-interdire-une-connexion-ssh-avec-lutilisateur-administrateur)
+- [Question 10 : Modifier port SSH et pare-feu](#question-10-modifier-le-port-découte-par-défaut-du-service-ssh-en-222-et-réaliser-les-modifications-sur-le-pare-feu-windows-en-conséquences)
+- [Question 11 : Procédure disponible](#question-11-procédure-réalisée-et-disponible)
+- [Question 12 : Accès distant RDP](#question-12-installer-et-tester-laccès-à-distance-au-serveur-windows2019-via-le-protocole-rdp)
+- [Question 13 : Sécurité RDP](#question-13-en-quoi-le-protocole-rdp-permet-dassurer-une-gestion-sécurisée-du-bureau-à-distance)
 
 ---
 
-##  Table de routage – Pare-feu
+## Question 1 : Réaliser un « sysprep » afin de réinitialiser le SID de l'OS Windows 2019
 
-| Protocole | Réseau de destination | Masque | Passerelle | Interface |
-|------------|-----------------------|---------|-------------|------------|
-| Connected (C) | 192.36.4.0 | 255.255.255.0 (/24) | 192.168.4.254 | 192.168.4.254 |
-| Connected (C) | 192.168.44.0 | 255.255.255.0 (/24) | 192.168.44.254 | 192.168.44.254 |
-| Connected (C) | 192.36.253.0 | 255.255.255.0 (/24) | 192.36.253.40 | 192.36.253.40 |
-| Static (S) | 192.168.4.0 | 255.255.255.0 (/24) | 192.168.44.253 | 192.168.44.254 |
-| Static (S) | 0.0.0.0 | 0.0.0.0/0 | 192.36.253.254 | 192.36.253.40 |
+- Se rendre dans `Disque local/Windows/System32/Sysprep`
 
----
 
-##  Table de routage – Multilayer
+  ![sit1](../medias/sit1_1.png)
 
-| Protocole | Réseau de destination | Masque | Passerelle | Interface |
-|------------|-----------------------|---------|-------------|------------|
-| Connected (C) | 192.168.4.0 | 255.255.255.128 | 192.168.4.126 | 192.168.4.126 |
-| Connected (C) | 192.168.4.128 | 255.255.255.192 | 192.168.4.190 | 192.168.4.190 |
-| Connected (C) | 192.168.4.192 | 255.255.255.240 | 192.168.4.206 | 192.168.4.206 |
-| Connected (C) | 192.168.44.248 | 255.255.255.240 | 192.168.44.253 | 192.168.44.253 |
-| Static (S) | 0.0.0.0 | 0.0.0.0/0 | 192.168.44.254 | 192.168.44.253 |
+
+
+  
+- Exécuter le fichier « sysprep »  
+- Vérifier dans l’invite de commande:
+
+\`\`\`bash
+whoami /user
+\`\`\`
 
 ---
 
-##  Table de routage NAT
+## Question 2 : Changer le nom de votre serveur : SeveurPrimaireX (X=1 pour l'étudiant 1, etc.)
 
-| Table NAT avant translation | Table NAT après translation |
-|-----------------------------|------------------------------|
-| **IP Src** | **Port Src** | **IP Dest** | **Port Dst** | **IP Src** | **Port Src** | **IP Dest** | **Port Dst** |
-| 192.168.4.0/24 | * | * | * | 192.36.253.0/24 | * | * | * |
+- Dans le menu « Serveur local », cliquer sur le nom du serveur d’origine.  
+- Nouveau nom : `SeveurPrimaire8` → faire `OK`.
 
 ---
 
-##  Commandes effectuées sur les équipements réseau
+## Question 3 : Modifier le mot de passe du compte administrateur local
+
+- Aller dans les paramètres du compte local admin → section « mot de passe » → cliquer sur « modifier »  
+- Nouveau mot de passe :  
+
+\`\`\`
+Jesuisenbtssio2025*-
+\`\`\`
 
 ---
 
-###  Switch Layer 2
+## Question 4 : Modifier le VLAN et l'adresse IP de votre serveur : 192.168.Y.X
 
-```bash
-enable
-configure terminal
+- Cliquer sur l’IP par défaut  
+- Clic droit sur « Ethernet » → Propriété → IPV4  
 
-# VLAN 10 : interfaces FastEthernet 0/1 à 0/11
-interface range fastEthernet0/1 - 11
- switchport mode access
- switchport access vlan 10
-exit
+**Configurations réseau :**
 
-# VLAN 20 : interfaces FastEthernet 0/12 à 0/16
-interface range fastEthernet0/12 - 16
- switchport mode access
- switchport access vlan 20
-exit
+- Lucien : 4.1  
+- Hugo : 4.51  
 
-# VLAN 54 : interface FastEthernet 0/18
-interface fastEthernet0/18
- switchport mode access
- switchport access vlan 54
-exit
+**Résultats ping depuis la machine cliente Windows :**  
 
-# Interface trunk : FastEthernet 0/24
-interface fastEthernet0/24
- switchport mode trunk
-exit
-```
+- Serveur Lucien  
+- Serveur Hugo
 
 ---
 
-### Switch Layer 3
+## Question 5 : Rédiger la procédure d'installation de la connexion sécurisée à distance via SSH
 
-```bash
-enable
-configure terminal
-
-# VLAN10
-interface range fastEthernet0/1 - 11
- switchport mode access
- switchport access vlan 10
-exit
-
-# VLAN20
-interface range fastEthernet0/12 - 16
- switchport mode access
- switchport access vlan 20
-exit
-
-# VLAN54
-interface fastEthernet0/18
- switchport mode access
- switchport access vlan 54
-exit
-
-# Trunk
-interface fastEthernet0/24
- switchport mode trunk
-exit
-
-# Route par défaut
-ip route 0.0.0.0 0.0.0.0 192.168.44.254
-```
-
-#### Configuration SSH
-
-```bash
-username etudiant privilege 15 password etudiant_007
-ip domain name sio.local
-crypto key generate rsa
-2042
-ip ssh time-out 60
-ip ssh authentication-retries 2 
-line vty 0 4 
-transport input ssh
-login local
-```
+- Procédure réalisée et disponible.
 
 ---
 
-###  Pare-feu
+## Question 6 : Installer et tester l'accès à distance au serveur Windows2019 via OpenSSH
 
-```bash
-enable
-configure terminal
+- Ne pas oublier de changer le port par 222 avec :  
 
-# Nom du routeur
-hostname Router
+\`\`\`bash
+-p 222
+\`\`\`
 
-# Interfaces
-interface GigabitEthernet0/0
- ip address 192.168.44.254 255.255.255.240
- no shut 
- ip nat inside
-exit
+---
 
-interface GigabitEthernet0/1
- ip address 192.36.4.254 255.255.255.0
- no shut 
-exit
+## Question 7 : En quoi SSH assure l’intégrité des communications
 
-interface GigabitEthernet0/2
- ip address 192.36.253.40 255.255.255.0
- no shut 
- ip nat outside
-exit
+- SSH chiffre les données échangées, empêchant l’interception ou la modification par des tiers.  
+- Première connexion SSH demande "yes/no" pour valider la clé publique du serveur afin d’éviter les attaques « man-in-the-middle ».  
 
-# NAT Overload
-ip nat inside source list 4 interface GigabitEthernet0/2 overload
+---
 
-# Routes statiques
-ip route 192.168.4.0 255.255.255.0 192.168.44.253
+## Question 8 : Créer un nouvel utilisateur sous Windows 2019
 
-# Classless routing
-ip classless
+- Nom : `adminssh`  
+- Mot de passe : `Cub_Admin_Ssh_007`
 
-# NetFlow export
-ip flow-export version 9
+---
 
-# ACL pour NAT
-access-list 4 permit 192.168.0.0 0.0.255.255
-```
+## Question 9 : Tester SSH pour ce nouvel utilisateur et interdire administrateur
 
-####  Configuration SSH
+- Tester la connexion SSH pour `adminssh`  
+- Interdire la connexion SSH pour l’utilisateur `administrateur`.
 
-```bash
-username etudiant privilege 15 password etudiant_007
-ip domain name sio.local
-crypto key generate rsa
-2042
-ip ssh time-out 60
-ip ssh authentication-retries 2 
-line vty 0 4 
-transport input ssh
-login local
-```
+---
 
+## Question 10 : Modifier le port SSH et ajuster le pare-feu
 
+- Modifier le port d’écoute par défaut du service SSH en `222`  
+- Adapter les règles sur le pare-feu Windows en conséquence.
+
+---
+
+## Question 11 : Procédure disponible
+
+- Procédure réalisée et disponible.
+
+---
+
+## Question 12 : Installer et tester l'accès distant via RDP
+
+- Procédure réalisée et testée.
+
+---
+
+## Question 13 : Sécurité du protocole RDP
+
+- RDP chiffre les données échangées (écran, clavier, souris, etc.)  
+- Utilise authentification (mot de passe, certificat, double authentification) pour n’autoriser que les personnes autorisées.
