@@ -5,6 +5,9 @@
 
 ---
 
+
+![LogocUB](../medias/logocub.png)
+
 ##  Sommaire
 
 - [Contexte : CUB](#contexte--cub)
