@@ -31,6 +31,8 @@
 
 - Se rendre dans `Disque local/Windows/System32/Sysprep`
 
+  ![Situation 1](../../medias/sit1_1.png)
+
 
 
 - Exécuter le fichier « sysprep »  
