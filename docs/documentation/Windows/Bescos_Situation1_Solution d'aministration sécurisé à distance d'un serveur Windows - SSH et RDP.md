@@ -1,220 +1,135 @@
-# 🖥️ Situation 1 – Administration sécurisée à distance d’un serveur Windows (SSH et RDP)
-![Logo CUB](docs/medias/logocub.png)
+# Situation 0 – CUB - Tables réseaux / NAT / Routage
 
 **Contexte :** CUB  
 **Réalisé par :** Lucien BESCOS  
-**BTS SIO – Bloc 2 Réseaux avancés**
 
 ---
 
-## 📑 Sommaire
 
-- [Contexte](#contexte)
-- [Question 1 – Sysprep et réinitialisation du SID](#question-1--sysprep-et-réinitialisation-du-sid)
-- [Question 2 – Changement du nom du serveur](#question-2--changement-du-nom-du-serveur)
-- [Question 3 – Sécurisation du mot de passe administrateur](#question-3--sécurisation-du-mot-de-passe-administrateur)
-- [Question 4 – Configuration du VLAN et de l’adresse IP](#question-4--configuration-du-vlan-et-de-ladresse-ip)
-- [Question 5 – Procédure d’installation SSH](#question-5--procédure-dinstallation-ssh)
-- [Question 6 – Test de la connexion SSH](#question-6--test-de-la-connexion-ssh)
-- [Question 7 – Sécurité et intégrité du protocole SSH](#question-7--sécurité-et-intégrité-du-protocole-ssh)
-- [Question 8 – Création d’un utilisateur SSH dédié](#question-8--création-dun-utilisateur-ssh-dédié)
-- [Question 9 – Interdiction de la connexion SSH pour l’administrateur](#question-9--interdiction-de-la-connexion-ssh-pour-ladministrateur)
-- [Question 10 – Modification du port SSH et pare-feu](#question-10--modification-du-port-ssh-et-pare-feu)
-- [Question 11 – Procédure complémentaire](#question-11--procédure-complémentaire)
-- [Question 12 – Installation et test du protocole RDP](#question-12--installation-et-test-du-protocole-rdp)
-- [Question 13 – Sécurité du protocole RDP](#question-13--sécurité-du-protocole-rdp)
+![LogocUB](../medias/logocub.png)
 
----
+## Sommaire
 
-## 🧩 Contexte
-
-Ce projet a pour but de **sécuriser l’administration à distance d’un serveur Windows Server 2019** dans le cadre du **contexte CUB**.  
-Les protocoles **SSH** et **RDP** seront mis en place et testés pour garantir la sécurité et l’intégrité des communications.
+- [Question 1 : Sysprep Windows 2019](#question-1-réaliser-un-sysprep-afin-de-réinitialiser-le-sid-de-los-windows-2019)
+- [Question 2 : Changer le nom du serveur](#question-2-changer-le-nom-de-votre-serveur-seveurprimairex-x1-pour-létudiant-1-etc)
+- [Question 3 : Modifier le mot de passe administrateur](#question-3-modifier-le-mot-de-passe-du-compte-administrateur-local-pour-respecter-les-recommandations-de-lansi)
+- [Question 4 : Modifier le VLAN et l'adresse IP](#question-4-modifier-le-vlan-et-ladresse-ip-de-votre-serveur-192168yx)
+- [Question 5 : Connexion sécurisée via SSH](#question-5-rédiger-la-procédure-dinstallation-de-la-connexion-sécurisée-à-distance-via-ssh)
+- [Question 6 : Accès distant via OpenSSH](#question-6-installer-et-tester-laccès-à-distance-au-serveur-windows2019-via-openssh)
+- [Question 7 : Sécurité SSH](#question-7-en-quoi-lutilisation-du-protocole-ssh-permet-til-dassurer-une-intégrité-des-communications)
+- [Question 8 : Création d'un utilisateur](#question-8-créer-un-nouvel-utilisateur-sous-windows-2019)
+- [Question 9 : Tester SSH et interdire administrateur](#question-9-tester-la-connexion-ssh-pour-ce-nouvel-utilisateur-puis-interdire-une-connexion-ssh-avec-lutilisateur-administrateur)
+- [Question 10 : Modifier port SSH et pare-feu](#question-10-modifier-le-port-découte-par-défaut-du-service-ssh-en-222-et-réaliser-les-modifications-sur-le-pare-feu-windows-en-conséquences)
+- [Question 11 : Procédure disponible](#question-11-procédure-réalisée-et-disponible)
+- [Question 12 : Accès distant RDP](#question-12-installer-et-tester-laccès-à-distance-au-serveur-windows2019-via-le-protocole-rdp)
+- [Question 13 : Sécurité RDP](#question-13-en-quoi-le-protocole-rdp-permet-dassurer-une-gestion-sécurisée-du-bureau-à-distance)
 
 ---
 
-## 🧱 Question 1 – Sysprep et réinitialisation du SID
+## Question 1 : Réaliser un « sysprep » afin de réinitialiser le SID de l'OS Windows 2019
 
-📍 **Objectif :** Réinitialiser le SID du système pour éviter les doublons.
+- Se rendre dans `Disque local/Windows/System32/Sysprep`  
+- Exécuter le fichier « sysprep »  
+- Vérifier dans l’invite de commande:
 
-**Procédure :**
-
-1. Se rendre dans :  
-   `C:\Windows\System32\Sysprep`
-2. Exécuter le fichier **sysprep.exe**
-3. Choisir :
-   - Action : `Entrer en mode OOBE (Out-of-Box Experience)`
-   - Cocher : `Généraliser`
-   - Option d’extinction : `Redémarrer`
-4. Vérifier les changements avec la commande :
-   ```bash
-   whoami /user
-   ```
+\`\`\`bash
+whoami /user
+\`\`\`
 
 ---
 
-## 🖥️ Question 2 – Changement du nom du serveur
+## Question 2 : Changer le nom de votre serveur : SeveurPrimaireX (X=1 pour l'étudiant 1, etc.)
 
-1. Aller dans le menu **Serveur local**.  
-2. Cliquer sur le nom du serveur d’origine.  
-3. Choisir un nouveau nom, par exemple :  
-   **SeveurPrimaire8**
-4. Redémarrer le serveur pour appliquer les changements.
+- Dans le menu « Serveur local », cliquer sur le nom du serveur d’origine.  
+- Nouveau nom : `SeveurPrimaire8` → faire `OK`.
 
 ---
 
-## 🔐 Question 3 – Sécurisation du mot de passe administrateur
+## Question 3 : Modifier le mot de passe du compte administrateur local
 
-Changer le mot de passe du compte **Administrateur local** conformément aux recommandations de l’**ANSI** :
+- Aller dans les paramètres du compte local admin → section « mot de passe » → cliquer sur « modifier »  
+- Nouveau mot de passe :  
 
-> **Nouveau mot de passe :**  
-> `Jesuisenbtssio2025*-`
-
-📍 **Critères respectés :**
-- Au moins 12 caractères  
-- Minuscules / majuscules  
-- Chiffres  
-- Caractères spéciaux
+\`\`\`
+Jesuisenbtssio2025*-
+\`\`\`
 
 ---
 
-## 🌐 Question 4 – Configuration du VLAN et de l’adresse IP
+## Question 4 : Modifier le VLAN et l'adresse IP de votre serveur : 192.168.Y.X
 
-1. Ouvrir les **Propriétés réseau** → clic droit sur **Ethernet** → **Propriétés** → **IPv4**  
-2. Configurer l’adresse IP manuellement :
+- Cliquer sur l’IP par défaut  
+- Clic droit sur « Ethernet » → Propriété → IPV4  
 
-| Élève | IP | Masque | Passerelle |
-|--------|----|---------|-------------|
-| Lucien | 192.168.4.1 | 255.255.255.128 | 192.168.4.126 |
-| Hugo | 192.168.4.51 | 255.255.255.128 | 192.168.4.126 |
+**Configurations réseau :**
 
-3. Tester la connectivité :
-   ```bash
-   ping 192.168.4.51
-   ping 192.168.4.1
-   ```
+- Lucien : 4.1  
+- Hugo : 4.51  
 
-**Résultat :**
-> Réponses obtenues avec un temps moyen inférieur à 1 ms, aucune perte de paquets.
+**Résultats ping depuis la machine cliente Windows :**  
+
+- Serveur Lucien  
+- Serveur Hugo
 
 ---
 
-## 🧠 Question 5 – Procédure d’installation SSH
+## Question 5 : Rédiger la procédure d'installation de la connexion sécurisée à distance via SSH
 
-1. Ouvrir **Windows PowerShell (Admin)**  
-2. Installer le module SSH :
-   ```powershell
-   Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
-   ```
-3. Démarrer le service :
-   ```powershell
-   Start-Service sshd
-   ```
-4. Activer le démarrage automatique :
-   ```powershell
-   Set-Service -Name sshd -StartupType 'Automatic'
-   ```
+- Procédure réalisée et disponible.
 
 ---
 
-## 🧪 Question 6 – Test de la connexion SSH
+## Question 6 : Installer et tester l'accès à distance au serveur Windows2019 via OpenSSH
 
-Depuis une machine cliente Linux ou Windows :
+- Ne pas oublier de changer le port par 222 avec :  
 
-```bash
-ssh Administrateur@172.16.54.57 -p 222
-```
-
-📌 *Ne pas oublier le paramètre `-p 222` après modification du port.*
+\`\`\`bash
+-p 222
+\`\`\`
 
 ---
 
-## 🔒 Question 7 – Sécurité et intégrité du protocole SSH
+## Question 7 : En quoi SSH assure l’intégrité des communications
 
-Le protocole **SSH (Secure Shell)** garantit :
-- Le **chiffrement** des données échangées
-- L’**authenticité** du serveur (via clé publique)
-- L’**intégrité** des messages transmis
-
-Lors de la première connexion, SSH demande une validation ("yes/no") pour approuver la clé du serveur.  
-👉 Cela protège contre les attaques de type **Man-in-the-Middle**.
+- SSH chiffre les données échangées, empêchant l’interception ou la modification par des tiers.  
+- Première connexion SSH demande "yes/no" pour valider la clé publique du serveur afin d’éviter les attaques « man-in-the-middle ».  
 
 ---
 
-## 👤 Question 8 – Création d’un utilisateur SSH dédié
+## Question 8 : Créer un nouvel utilisateur sous Windows 2019
 
-1. Ouvrir **Gestion de l’ordinateur → Utilisateurs et groupes locaux**
-2. Créer un utilisateur :
-   - Nom : `adminssh`
-   - Mot de passe : `Cub_Admin_Ssh_007`
-3. Ajouter l’utilisateur au groupe **Administrateurs** si nécessaire.
+- Nom : `adminssh`  
+- Mot de passe : `Cub_Admin_Ssh_007`
 
 ---
 
-## 🚫 Question 9 – Interdiction de la connexion SSH pour l’administrateur
+## Question 9 : Tester SSH pour ce nouvel utilisateur et interdire administrateur
 
-1. Éditer le fichier de configuration SSH :
-   ```
-   C:\ProgramData\ssh\sshd_config
-   ```
-2. Modifier / ajouter la ligne :
-   ```
-   DenyUsers Administrateur
-   ```
-3. Redémarrer le service :
-   ```powershell
-   Restart-Service sshd
-   ```
+- Tester la connexion SSH pour `adminssh`  
+- Interdire la connexion SSH pour l’utilisateur `administrateur`.
 
 ---
 
-## ⚙️ Question 10 – Modification du port SSH et pare-feu
+## Question 10 : Modifier le port SSH et ajuster le pare-feu
 
-1. Dans `C:\ProgramData\ssh\sshd_config`, modifier :
-   ```
-   Port 222
-   ```
-2. Ouvrir le port dans le pare-feu Windows :
-   ```powershell
-   New-NetFirewallRule -Name "SSH_222" -DisplayName "SSH Port 222" -Protocol TCP -LocalPort 222 -Action Allow
-   ```
-
-3. Redémarrer le service SSH :
-   ```powershell
-   Restart-Service sshd
-   ```
+- Modifier le port d’écoute par défaut du service SSH en `222`  
+- Adapter les règles sur le pare-feu Windows en conséquence.
 
 ---
 
-## 🧾 Question 11 – Procédure complémentaire
+## Question 11 : Procédure disponible
 
-Procédure réalisée et vérifiée : les tests de connexion SSH et RDP sont concluants sur les deux serveurs.
-
----
-
-## 🖥️ Question 12 – Installation et test du protocole RDP
-
-1. Activer le **Bureau à distance** :
-   - Ouvrir : *Paramètres → Système → Bureau à distance*
-   - Activer l’option « Autoriser les connexions à distance à cet ordinateur »
-2. Depuis un poste client :
-   - Ouvrir `Connexion Bureau à distance`
-   - Entrer l’adresse IP : `172.16.54.57`
-   - Se connecter avec un utilisateur autorisé
+- Procédure réalisée et disponible.
 
 ---
 
-## 🧰 Question 13 – Sécurité du protocole RDP
+## Question 12 : Installer et tester l'accès distant via RDP
 
-Le protocole **RDP (Remote Desktop Protocol)** assure :
-- Le **chiffrement complet** de la session
-- La **protection des données** clavier/souris/écran
-- Une **authentification forte** de l’utilisateur (mot de passe, certificat, etc.)
-
-Ainsi, seule une personne autorisée peut accéder à distance au bureau de l’administrateur en toute sécurité.
+- Procédure réalisée et testée.
 
 ---
 
-✅ **Documentation complète – Situation 1 : Administration sécurisée d’un serveur Windows Server 2019 via SSH et RDP**  
-**Auteur :** Lucien BESCOS  
-**Contexte : CUB**
+## Question 13 : Sécurité du protocole RDP
+
+- RDP chiffre les données échangées (écran, clavier, souris, etc.)  
+- Utilise authentification (mot de passe, certificat, double authentification) pour n’autoriser que les personnes autorisées.
