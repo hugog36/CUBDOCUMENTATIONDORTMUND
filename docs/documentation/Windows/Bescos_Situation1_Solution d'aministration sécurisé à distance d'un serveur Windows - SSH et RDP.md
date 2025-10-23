@@ -6,8 +6,7 @@
 ---
 
 
-![LogocUB](docs/medias/logocub.png)
-
+![Logo CUB](docs/medias/logocub.png)
 
 
 ## Sommaire
