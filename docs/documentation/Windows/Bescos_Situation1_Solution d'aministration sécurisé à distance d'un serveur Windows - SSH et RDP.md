@@ -32,7 +32,7 @@
 - Se rendre dans `Disque local/Windows/System32/Sysprep`
 
 
-  ![sit1](../medias/sit1_1.png)
+![situation1](medias/sit1_1.png)
 
 
 
