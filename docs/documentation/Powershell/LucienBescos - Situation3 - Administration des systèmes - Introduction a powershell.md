@@ -25,6 +25,8 @@
 
 ## Question 1 : ﻿﻿﻿Connectez-vous en SSH puis exécuter et vérifier la version de votre Powershell.
 
+![Logo CUB](../../medias/Powershell_1.png)
+
 Connexion en SSH sur powershell « powershell »
 
 Version : 5.1.17763.2090
