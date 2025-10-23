@@ -1,6 +1,8 @@
-# Context : CUB
+# Situation 3  : Administration des systèmes - Introduction a powershell
+**Contexte :** CUB  
+**Réalisé par :** Lucien BESCOS  
 
-**Réaliser par : Lucien BESCOS**
+![Logo CUB](../../medias/logocub.png)
 
 ## Sommaire
 
