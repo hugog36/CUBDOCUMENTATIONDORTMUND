@@ -1,11 +1,11 @@
-# 📘 Documentation Réseau – CUB
+# Documentation Réseau – CUB
 
 **Contexte :** CUB  
 **Réalisé par :** Lucien BESCOS  
 
 ---
 
-## 📑 Sommaire
+##  Sommaire
 
 - [Contexte : CUB](#contexte--cub)
 - [Plan d’adressage](#plan-dadressage)
@@ -19,13 +19,13 @@
 
 ---
 
-## 🧩 Contexte : CUB
+##  Contexte : CUB
 
 Ce projet consiste à la mise en place d’une infrastructure réseau complète pour le contexte **CUB**, incluant la configuration du routage, des VLANs, du NAT, du pare-feu et de l’accès distant SSH.
 
 ---
 
-## 🌐 Plan d’adressage
+##  Plan d’adressage
 
 Pour le VLAN **Production**, nous avons besoin de **120 hôtes**.  
 Nous déterminons donc le masque de sous-réseau approprié :
@@ -41,7 +41,7 @@ Nous déterminons donc le masque de sous-réseau approprié :
 
 ---
 
-## 🧭 Table de routage – Pare-feu
+##  Table de routage – Pare-feu
 
 | Protocole | Réseau de destination | Masque | Passerelle | Interface |
 |------------|-----------------------|---------|-------------|------------|
@@ -53,7 +53,7 @@ Nous déterminons donc le masque de sous-réseau approprié :
 
 ---
 
-## 🧮 Table de routage – Multilayer
+##  Table de routage – Multilayer
 
 | Protocole | Réseau de destination | Masque | Passerelle | Interface |
 |------------|-----------------------|---------|-------------|------------|
@@ -65,7 +65,7 @@ Nous déterminons donc le masque de sous-réseau approprié :
 
 ---
 
-## 🌍 Table de routage NAT
+##  Table de routage NAT
 
 | Table NAT avant translation | Table NAT après translation |
 |-----------------------------|------------------------------|
@@ -74,11 +74,11 @@ Nous déterminons donc le masque de sous-réseau approprié :
 
 ---
 
-## ⚙️ Commandes effectuées sur les équipements réseau
+##  Commandes effectuées sur les équipements réseau
 
 ---
 
-### 🔹 Switch Layer 2
+###  Switch Layer 2
 
 ```bash
 enable
@@ -110,7 +110,7 @@ exit
 
 ---
 
-### 🔹 Switch Layer 3
+### Switch Layer 3
 
 ```bash
 enable
@@ -143,7 +143,7 @@ exit
 ip route 0.0.0.0 0.0.0.0 192.168.44.254
 ```
 
-#### 🔒 Configuration SSH
+#### Configuration SSH
 
 ```bash
 username etudiant privilege 15 password etudiant_007
@@ -159,7 +159,7 @@ login local
 
 ---
 
-### 🔹 Pare-feu
+###  Pare-feu
 
 ```bash
 enable
@@ -202,7 +202,7 @@ ip flow-export version 9
 access-list 4 permit 192.168.0.0 0.0.255.255
 ```
 
-#### 🔒 Configuration SSH
+####  Configuration SSH
 
 ```bash
 username etudiant privilege 15 password etudiant_007
@@ -216,6 +216,4 @@ transport input ssh
 login local
 ```
 
----
 
-✅ **Documentation terminée – Projet CUB par Lucien BESCOS**
