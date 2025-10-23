@@ -160,17 +160,13 @@ New-Item -name "liste des procedures.txt" -itemtype file
 
 ![image](../../medias/Powershell_18.png)
 
-![image](../../medias/Powershell_19.png)
+![image](../../medias/Powershell_23.png)
 
 ---
 
 ## Question 13 :﻿﻿﻿﻿ Réaliser une copie du fichier « ListeProcédures.txt» vers un nouveau fichier de sauvegarde nommé « ListeProcéduresSauvegarde.txt ».
 
 
-![image](../../medias/Powershell_20.png)
+![image](../../medias/Powershell_21.png)
 
 - Nous pouvons voir que nous avons bien copié le fichier en question vers la bonne destination et que tous les éléments présents ont bien été « sauvegardés ».
-
-```powershell
-Copy-Item -Path "ListeProcédures.txt" -Destination "ListeProcéduresSauvegarde.txt"
-```
