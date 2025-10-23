@@ -2,11 +2,11 @@
 
 **Contexte :** CUB  
 **Réalisé par :** Lucien BESCOS  
-
+![LogocUB](../medias/logocub.png)
 ---
 
 
-![LogocUB](../medias/logocub.png)
+
 
 ## Sommaire
 
