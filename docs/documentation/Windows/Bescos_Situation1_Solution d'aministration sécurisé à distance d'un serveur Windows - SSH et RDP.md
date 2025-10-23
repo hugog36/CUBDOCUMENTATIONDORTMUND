@@ -1,5 +1,5 @@
 # 🖥️ Situation 1 – Administration sécurisée à distance d’un serveur Windows (SSH et RDP)
-![Logo CUB](../medias/logocub.png)
+![Logo CUB](docs/medias/logocub.png)
 
 **Contexte :** CUB  
 **Réalisé par :** Lucien BESCOS  
