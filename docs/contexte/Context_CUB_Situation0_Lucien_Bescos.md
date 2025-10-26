@@ -1,7 +1,9 @@
-# Situation 0 – CUB - Tables réseaux / NAT / Routage
+# Context CUB - Situation 0 – Tables réseaux / NAT / Routage / Configuration des élements d'interconnexions 
 
 **Contexte :** CUB  
 **Réalisé par :** Lucien BESCOS  
+
+**Date de réalisation :** 18/10/2025
 
 ---
 
