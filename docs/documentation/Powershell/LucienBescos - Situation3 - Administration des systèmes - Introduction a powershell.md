@@ -1,4 +1,4 @@
-# Situation 3  : Administration des systèmes - Introduction a powershell
+# Situation 3 - Administration des systèmes - Introduction a powershell
 **Contexte :** CUB  
 **Réalisé par :** Lucien BESCOS  
 
