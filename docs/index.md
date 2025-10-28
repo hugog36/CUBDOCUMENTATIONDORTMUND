@@ -1,11 +1,12 @@
-# 💻 Documentation BTS SIO SISR  
-### Réalisée par **Lucien BESCOS** & **Hugo GUIGNARD**  
+# Documentation BTS SIO SISR  
+### Réalisée par **Hugo GUIGNARD** & **Lucien BESCOS**
+
 Lycée Paul-Louis Courier – Tours  
 Années scolaires **2023 – 2025**
 
 ---
 
-## 🧭 Présentation du site
+## Introduction
 
 Bienvenue sur notre site de documentation réalisé dans le cadre du **BTS SIO (Services Informatiques aux Organisations)**, option **SISR** (*Solutions d’Infrastructure, Systèmes et Réseaux*).  
 Ce site regroupe l’ensemble de nos **documentations pédagogiques, projets et travaux pratiques** réalisés au cours de nos deux années de formation.
