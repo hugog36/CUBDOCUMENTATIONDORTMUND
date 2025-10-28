@@ -43,7 +43,7 @@ Une fois les documentations rédigées, nous avons voulu les rendre **accessible
 
 ---
 
-## 🤝 Collaboration et gestion de version
+## Collaboration et gestion de version
 
 Tout le travail a été réalisé **en collaboration entre Hugo Guignard et Lucien Bescos**, avec une utilisationde **Git et GitHub** pour :
 - Travailler à deux sur les mêmes fichiers,
