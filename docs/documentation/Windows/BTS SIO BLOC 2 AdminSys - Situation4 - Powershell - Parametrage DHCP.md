@@ -35,7 +35,7 @@
 
 ---
 
-# SIO2 BLOC 2 Réseaux avancé – Contexte : CUB – Réseau avancé  
+
 **4ième situation - « Paramétrage et sécurisation du service DHCP »**
 
 ## Question 1 : Modifier la maquette
