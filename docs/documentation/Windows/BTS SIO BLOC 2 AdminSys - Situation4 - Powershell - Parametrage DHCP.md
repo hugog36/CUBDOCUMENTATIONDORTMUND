@@ -40,6 +40,8 @@
 
 ## Question 1 : Modifier la maquette
 
+![Situation 4](../../medias/dhcp1.png)
+
 ---
 
 ## Question 2 : Rédiger la fiche de tests de votre maquette et faire valider celle-ci par votre enseignant  
