@@ -1,8 +1,15 @@
 
-# Contexte : CUB  
-**Réaliser par** : Lucien BESCOS  
-**SIO2 BLOC 2 Réseaux avancé – Contexte : CUB – Réseau avancé**  
-**4ième situation - « Paramétrage et sécurisation du service DHCP »**  
+#  Administration des systèmes - Situation 4 – Powershell - Parametrage DHCP
+
+**Contexte :** CUB  
+**Réalisé par :** Lucien BESCOS
+
+**Date de réalisation :** 14/12/2025
+
+---
+
+
+![Logo CUB](../../medias/logocub.png)
 
 ---
 
