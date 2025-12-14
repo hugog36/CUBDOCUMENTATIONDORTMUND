@@ -18,10 +18,7 @@
 - [Contexte : CUB](#contexte--cub)
 - [Question 1 : Modifier la maquette](#question-1--modifier-la-maquette)
 - [Question 2 : Rédiger la fiche de tests de votre maquette et faire valider celle-ci par votre enseignant](#question-2--rédiger-la-fiche-de-tests-de-votre-maquette-et-faire-valider-celle-ci-par-votre-enseignant)
-- [Question 3 : Activer et paramétrer le service DHCP sur votre serveur ServeurPrimaireX](#question-3--activer-et-paramétrer-le-service-dhcp-sur-votre-serveur-serveurprimairex)
-  - [Dans « Ajouter des roles »](#dans--ajouter-des-roles)
-  - [Dans PowerShell](#dans-powershell)
-  - [Pour le VLAN clients](#pour-le-vlan-clients)
+- [Question 3 : Activer et paramétrer le service DHCP sur votre serveur ServeurPrimaireX en respectant le cahier des charges ](#question-3--activer-et-paramétrer-le-service-dhcp-sur-votre-serveur-serveurprimairex-en-respectant-le-cahier-des-charges)
 - [Question 4 : Update de la maquette Packet Tracer](#question-4--update-de-la-maquette-packet-tracer)
 - [Question 5 : Méthode de mise en place des deux types de failover](#question-5--méthode-de-mise-en-place-des-deux-types-de-failover)
 - [Question 6 : Mettre en place le Actif/Actif](#question-6--mettre-en-place-le-actifactif)
@@ -46,9 +43,10 @@
 
 ## Question 2 : Rédiger la fiche de tests de votre maquette et faire valider celle-ci par votre enseignant  
 
-**Test effectués :** Demande de requête DHCP pour l’attribution d’une configuration réseau  
+**Test effectués :** Demande de requête DHCP pour l’attribution d’une configuration réseau
 
-![Situation 4](../../medias/dhcp2.jpeg)
+
+ ![Situation 4](../../medias/dhcp2.jpg)  ![Situation 4](../../medias/dhcp3.jpg) 
 
 ---
 
@@ -58,9 +56,13 @@ Utiliser des commandes PowerShell pour créer l'étendue DHCP pour le sous-rése
 
 ### Dans « Ajouter des roles »
 
+![Situation 4](../../medias/dhcp4.png)  ![Situation 4](../../medias/dhcp5.png) 
+
 ---
 
 ### Dans PowerShell :  
+
+![Situation 4](../../medias/dhcp6.png)
 
 **Création des plages :**  
 ```powershell
@@ -70,12 +72,17 @@ Add-DhcpServerv4Scope -Name "AdministrationSystemeReseau" -StartRange 192.168.4.
 
 **Pour vérifier :**  
 
+![Situation 4](../../medias/dhcp7.png) ![Situation 4](../../medias/dhcp8.png) 
+
+![Situation 4](../../medias/dhcp9.png) 
+
 ---
 
 **Exclusion d’adresse :**  
 ```powershell
 Add-DHCPServerV4ExclusionRange -ScopeId 192.168.4.192 -StartRange 192.168.4.195 -EndRange 192.168.4.200
 ```
+![Situation 4](../../medias/dhcp10.png) 
 
 **Réservation d’adresse :**  
 
@@ -84,37 +91,53 @@ Ici notre client : `08-00-27-2D-AB-B4`
 ```powershell
 Add-DhcpServerv4Reservation -ScopeId 192.168.4.192 -IPAddress 192.168.4.201 -ClientId 08-00-27-2D-AB-B4 -Description "Poste Specifique pour le service"
 ```
+![Situation 4](../../medias/dhcp11.png) 
+
+![Situation 4](../../medias/dhcp12.png) 
 
 **Mettre un bail de 4h :**  
 ```powershell
 Set-DhcpServerv4Scope -ScopeId 192.168.4.192 -LeaseDuration 04:00:00
 ```
+![Situation 4](../../medias/dhcp13.png) 
+
+![Situation 4](../../medias/dhcp14.png) 
 
 ---
 
 ### Pour le VLAN clients
 
+![Situation 4](../../medias/dhcp15.png) 
+
 **Distribution des passerelles**  
+
+![Situation 4](../../medias/dhcp16.png) 
 
 **Distribution du serveur DNS**  
 
+![Situation 4](../../medias/dhcp17.png) 
+
 **Distribution du domaine**  
+
+![Situation 4](../../medias/dhcp18.png) 
 
 ---
 
 ## Question 4 : Update de la maquette Packet Tracer
 
-Packet Tracer fait  
+Packet Tracer réalisé 
 
 ---
 
 ## Question 5 : Méthode de mise en place des deux types de failover
 
-Fiche procédure  
+Voir Fiche procédure 5 Admin sys 
 
 ---
 
 ## Question 6 : Mettre en place le Actif/Actif
+
+![Situation 4](../../medias/dhcp19.png) 
 
 ---
 
@@ -125,6 +148,8 @@ Voir fiche tests
 ---
 
 ## Question 8 : Mise en place du Actif/Passif
+
+![Situation 4](../../medias/dhcp20.png) 
 
 ---
 
