@@ -48,6 +48,8 @@
 
 **Test effectués :** Demande de requête DHCP pour l’attribution d’une configuration réseau  
 
+![Situation 4](../../medias/dhcp2.jpeg)
+
 ---
 
 ## Question 3 : Activer et paramétrer le service DHCP sur votre serveur ServeurPrimaireX en respectant le cahier des charges du document 1  
