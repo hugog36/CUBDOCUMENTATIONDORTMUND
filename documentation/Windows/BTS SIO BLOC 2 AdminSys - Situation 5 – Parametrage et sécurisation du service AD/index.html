@@ -1,0 +1,1027 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://hugog36.github.io/CUBDOCUMENTATIONDORTMUND/documentation/Windows/BTS%20SIO%20BLOC%202%20AdminSys%20-%20Situation%205%20%E2%80%93%20Parametrage%20et%20s%C3%A9curisation%20du%20service%20AD/">
+      
+      
+        <link rel="prev" href="../../Powershell/LucienBescos%20-%20Situation3%20-%20Administration%20des%20syst%C3%A8mes%20-%20Introduction%20a%20powershell/">
+      
+      
+        <link rel="next" href="../BTS%20SIO%20BLOC%202%20AdminSys%20-%20Situation4%20-%20Powershell%20-%20Parametrage%20DHCP/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../media/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Contexte : CUB - Le contexte CUB</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#contexte-cub" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../../.." title="Le contexte CUB" class="md-header__button md-logo" aria-label="Le contexte CUB" data-md-component="logo">
+      
+  <img src="../../../medias/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Le contexte CUB
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Contexte : CUB
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Le contexte CUB" class="md-nav__button md-logo" aria-label="Le contexte CUB" data-md-component="logo">
+      
+  <img src="../../../medias/logo.png" alt="logo">
+
+    </a>
+    Le contexte CUB
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation BTS SIO SISR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contexte
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Contexte
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contexte/LucienBescos%20-%20Context%20CUB%20-%20Situation%200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context CUB - Situation 0 – Tables d'addressage / NAT / Routage / Configuration des élements d'interconnexions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DNS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DNS/Administration%20et%20exploitation%20des%20services%20-%20Installation%20Configuration%20d%27un%20serveur%20DNS%20maitre%20faisant%20autorit%C3%A9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mise en place d’un serveur DNS Maitre faisant autorité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DNS/LucienBescos%20-%20Administation%20et%20exploitation%20des%20services%20-%20Mise%20en%20place%20d%27un%20DNS%20recursif%20Esclave%20%2B%20D%C3%A9legation%20de%20zone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation et Configuration d'un serveur DNS esclave faisant autorité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DNS/LucienBescos%20-%20Administation%20et%20exploitation%20des%20services%20-%20Mise%20en%20place%20d%27un%20DNS%20recursif/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mise en place d'un DNS recursif + TOTP + ETCKeeper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Powershell
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Powershell
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Powershell/LucienBescos%20-%20Situation3%20-%20Administration%20des%20syst%C3%A8mes%20-%20Introduction%20a%20powershell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration des systèmes - Situation 3 - Introduction a powershell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contexte : CUB
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contexte : CUB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sommaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sommaire
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BTS%20SIO%20BLOC%202%20AdminSys%20-%20Situation4%20-%20Powershell%20-%20Parametrage%20DHCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration des systèmes - Situation 4 – Powershell - Parametrage DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HugoGuignard%20-%20Administration%20des%20system%20-%20Mise%20en%20place%20et%20d%C3%A9couverte%20d%E2%80%99un%20environnement%20de%20d%C3%A9veloppement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mise en place et découverte d’un environnement de développement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LucienBescos%20-%20Situation%201%20-%20Administration%20des%20syst%C3%A8mes%20-%20Solution%20d%27aministration%20s%C3%A9curis%C3%A9%20%C3%A0%20distance%20d%27un%20serveur%20Windows%20-%20SSH%20et%20RDP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration des systèmes - Situation 1 – Solution d'aministration sécurisé à distance d'un serveur Windows - SSH et RDP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sommaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sommaire
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="contexte-cub">Contexte : CUB</h1>
+<p><strong>Réaliser par</strong> : Lucien BESCOS</p>
+<hr />
+<h2 id="sommaire">Sommaire</h2>
+<ul>
+<li><a href="#context--cub">Context : CUB</a></li>
+<li><a href="#question-1--installation-des-services-adds-et-promouvoir-le-serveur-en-contrôleur-de-domaine">Question 1 : Installation des services ADDS et promouvoir le serveur en contrôleur de domaine</a></li>
+<li><a href="#question-2--ajouter-une-nouvelle-forêt-correspondant-à-votre-nom-de-domaine">Question 2 : Ajouter une nouvelle forêt correspondant à votre nom de domaine</a></li>
+<li><a href="#question-3--mot-de-passe-pour-la-restauration-des-services-dannuaire">Question 3 : Mot de passe pour la restauration des services d'annuaire</a></li>
+<li><a href="#question-4--afficher-le-script-powershell-pour-visualiser-les-commandes-utilisées">Question 4 : Afficher le script Powershell pour visualiser les commandes utilisées</a></li>
+<li><a href="#question-5--nouveau-mot-de-passe-pour-le-compte-administrateur">Question 5 : Nouveau mot de passe pour le compte « administrateur »</a></li>
+<li><a href="#question-6--nouveau--unité-dorganisation">Question 6 : Nouveau → Unité d’organisation</a></li>
+<li><a href="#question-7--intégrer-un-ordinateur-client-windows-au-domaine-nom--postea">Question 7 : Intégrer un ordinateur client Windows au domaine (nom : posteA)</a></li>
+<li><a href="#question-8--déplacer-lordinateur-postea-dans-lunité-dorganisation-salle002">Question 8 : Déplacer l'ordinateur « posteA » dans l'unité d'organisation « Salle002 »</a></li>
+<li><a href="#question-9--créer-dans-le-conteneur-users-les-utilisateurs-suivants">Question 9 : Créer dans le conteneur « Users » les utilisateurs suivants</a></li>
+<li><a href="#question-10--créer-les-groupes-suivants-dans-le-conteneur-users">Question 10 : Créer les groupes suivants dans le conteneur « Users »</a></li>
+<li><a href="#question-11--ajouter-des-membres-aux-groupes-créés">Question 11 : Ajouter des membres aux groupes créés</a></li>
+<li><a href="#question-12--retrouver-les-commandes-powershell-essentielles-pour-gérer-lad">Question 12 : Retrouver les commandes PowerShell essentielles pour gérer l'AD</a></li>
+<li><a href="#question-13--réaliser-à-laide-de-commandes-powershell-diverses-actions">Question 13 : Réaliser à l'aide de commandes Powershell diverses actions</a></li>
+<li><a href="#question-14--mise-en-place-dune-redondance-de-lactive-directory">Question 14 : Mise en place d'une redondance de l'Active Directory</a></li>
+</ul>
+<hr />
+<h1 id="a-installation-des-services-adds">A Installation des services ADDS</h1>
+<h2 id="question-1-installation-des-services-adds-et-promouvoir-le-serveur-en-controleur-de-domaine">Question 1 : Installation des services ADDS et promouvoir le serveur en contrôleur de domaine</h2>
+<h2 id="question-2-ajouter-une-nouvelle-foret-correspondant-a-votre-nom-de-domaine">Question 2 : Ajouter une nouvelle forêt correspondant à votre nom de domaine</h2>
+<p>local.anvers.cub.sioplc.fr (pour l'agence d'Anvers...)</p>
+<h2 id="question-3-mot-de-passe-pour-la-restauration-des-services-dannuaire">Question 3 : Mot de passe pour la restauration des services d'annuaire</h2>
+<p>Cub_007</p>
+<h2 id="question-4-afficher-le-script-powershell-pour-visualiser-les-commandes-utilisees-lors-de-linstallation-des-services-adds">Question 4 : Afficher le script Powershell pour visualiser les commandes utilisées lors de l'installation des services ADDS</h2>
+<h2 id="question-5-nouveau-mot-de-passe-pour-le-compte-administrateur">Question 5 : Nouveau mot de passe pour le compte « administrateur »</h2>
+<p>Nouveau mot de passe : CubCub_007</p>
+<h1 id="b-parametrage-de-lactive-directory">B Paramétrage de l'Active Directory</h1>
+<h2 id="question-6-nouveau-unite-dorganisation">Question 6 : Nouveau → Unité d’organisation</h2>
+<h2 id="question-7-integrer-un-ordinateur-client-windows-au-domaine-nom-postea">Question 7 : Intégrer un ordinateur client Windows au domaine (nom : posteA)</h2>
+<p>Dans « Computer » → Nouveau → Ordinateur</p>
+<h2 id="question-8-deplacer-lordinateur-postea-dans-lunite-dorganisation-salle002">Question 8 : Déplacer l'ordinateur « posteA » dans l'unité d'organisation « Salle002 »</h2>
+<p>Clic droit sur posteA → déplacer</p>
+<h2 id="question-9-creer-dans-le-conteneur-users-les-utilisateurs-suivants">Question 9 : Créer dans le conteneur « Users » les utilisateurs suivants</h2>
+<h2 id="question-10-creer-les-groupes-suivants-dans-le-conteneur-users-etendue-globale-type-securite">Question 10 : Créer les groupes suivants dans le conteneur « Users » (étendue: Globale; Type: Sécurité)</h2>
+<ul>
+<li>Production</li>
+<li>Clients</li>
+<li>Administration</li>
+</ul>
+<p>Exemple</p>
+<h2 id="question-11-ajouter-des-membres-aux-groupes-crees">Question 11 : Ajouter des membres aux groupes créés</h2>
+<ul>
+<li>M Balny et M Demouliere : groupe Production</li>
+<li>Mme Ferreira : groupe Administration</li>
+<li>Mme Caramigeas : groupe Clients</li>
+</ul>
+<h2 id="question-12-retrouver-les-commandes-powershell-essentielles-permettant-de-gerer-lactive-directory-et-rediger-la-fiche-de-procedure-6-powershell-gestion-de-lad">Question 12 : Retrouver les commandes PowerShell essentielles permettant de gérer l'Active Directory et rédiger la fiche de procédure 6: Powershell - Gestion de l'AD</h2>
+<p>Fiche faite</p>
+<h2 id="question-13-realiser-a-laide-de-commandes-powershell-les-actions-suivantes">Question 13 : Réaliser à l'aide de commandes Powershell les actions suivantes</h2>
+<ul>
+<li>Création d'une unité d'organisation : Salle005</li>
+<li>Déplacer l'ordinateur « posteA » vers l'unité d'organisation « Salle001 »</li>
+<li>Créer l'utilisatrice suivante dans le conteneur « Users » :<br />
+  Nom : delouche; Prénom: patricia; mot de passe (à changer à la première connexion) : Provisoire_007<br />
+  <div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">New-ADUser</span> <span class="n">-Name</span> <span class="s2">&quot;patricia delouche&quot;</span> <span class="n">-GivenName</span> <span class="s2">&quot;patricia&quot;</span> <span class="n">-Surname</span> <span class="s2">&quot;delouche&quot;</span> <span class="n">-SamAccountName</span> <span class="s2">&quot;pdelouche&quot;</span> <span class="n">-UserPrincipalName</span> <span class="s2">&quot;pdelouche@local.dortmund.cub.sioplc.fr&quot;</span> <span class="n">-AccountPassword</span> <span class="p">(</span><span class="nb">ConvertTo-SecureString</span> <span class="s2">&quot;Provisoire_007&quot;</span> <span class="n">-AsPlainText</span> <span class="n">-Force</span><span class="p">)</span> <span class="n">-ChangePasswordAtLogon</span> <span class="nv">$true</span> <span class="n">-Enabled</span> <span class="nv">$true</span> <span class="n">-Path</span> <span class="s2">&quot;CN=Users,DC=local,DC=dortmund,DC=cub,DC=sioplc,DC=fr&quot;</span>
+</span></code></pre></div></li>
+<li>Créer le groupe « Developpeurs » dans le conteneur « Users »</li>
+<li>Ajouter Mme Delouche au groupe « Developpeurs »</li>
+<li>Lister tous les comptes de l'Active Directory avec le détail des informations</li>
+</ul>
+<h2 id="question-14-mise-en-place-dune-redondance-de-lactive-directory">Question 14 : Mise en place d'une redondance de l'Active Directory</h2>
+<p>Voir fiche de procédure 7</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../../Powershell/LucienBescos%20-%20Situation3%20-%20Administration%20des%20syst%C3%A8mes%20-%20Introduction%20a%20powershell/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Administration des systèmes - Situation 3 - Introduction a powershell">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Administration des systèmes - Situation 3 - Introduction a powershell
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../BTS%20SIO%20BLOC%202%20AdminSys%20-%20Situation4%20-%20Powershell%20-%20Parametrage%20DHCP/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Administration des systèmes - Situation 4 – Powershell - Parametrage DHCP">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Administration des systèmes - Situation 4 – Powershell - Parametrage DHCP
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Licence CC 4.0 FR BY-NC-SA - 2025 D. Balny et Q. Demoulière - Lycée Paul-Louis Courier
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.footer", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

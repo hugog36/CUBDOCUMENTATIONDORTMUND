@@ -1,0 +1,1415 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://hugog36.github.io/CUBDOCUMENTATIONDORTMUND/documentation/Windows/LucienBescos%20-%20Situation%201%20-%20Administration%20des%20syst%C3%A8mes%20-%20Solution%20d%27aministration%20s%C3%A9curis%C3%A9%20%C3%A0%20distance%20d%27un%20serveur%20Windows%20-%20SSH%20et%20RDP/">
+      
+      
+        <link rel="prev" href="../HugoGuignard%20-%20Administration%20des%20system%20-%20Mise%20en%20place%20et%20d%C3%A9couverte%20d%E2%80%99un%20environnement%20de%20d%C3%A9veloppement/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../media/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Administration des systèmes - Situation 1 – Solution d'aministration sécurisé à distance d'un serveur Windows - SSH et RDP - Le contexte CUB</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#administration-des-systemes-situation-1-solution-daministration-securise-a-distance-dun-serveur-windows-ssh-et-rdp" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../../.." title="Le contexte CUB" class="md-header__button md-logo" aria-label="Le contexte CUB" data-md-component="logo">
+      
+  <img src="../../../medias/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Le contexte CUB
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Administration des systèmes - Situation 1 – Solution d'aministration sécurisé à distance d'un serveur Windows - SSH et RDP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Le contexte CUB" class="md-nav__button md-logo" aria-label="Le contexte CUB" data-md-component="logo">
+      
+  <img src="../../../medias/logo.png" alt="logo">
+
+    </a>
+    Le contexte CUB
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation BTS SIO SISR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contexte
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Contexte
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contexte/LucienBescos%20-%20Context%20CUB%20-%20Situation%200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context CUB - Situation 0 – Tables d'addressage / NAT / Routage / Configuration des élements d'interconnexions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DNS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DNS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DNS/Administration%20et%20exploitation%20des%20services%20-%20Installation%20Configuration%20d%27un%20serveur%20DNS%20maitre%20faisant%20autorit%C3%A9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mise en place d’un serveur DNS Maitre faisant autorité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DNS/LucienBescos%20-%20Administation%20et%20exploitation%20des%20services%20-%20Mise%20en%20place%20d%27un%20DNS%20recursif%20Esclave%20%2B%20D%C3%A9legation%20de%20zone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation et Configuration d'un serveur DNS esclave faisant autorité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DNS/LucienBescos%20-%20Administation%20et%20exploitation%20des%20services%20-%20Mise%20en%20place%20d%27un%20DNS%20recursif/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mise en place d'un DNS recursif + TOTP + ETCKeeper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Powershell
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Powershell
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Powershell/LucienBescos%20-%20Situation3%20-%20Administration%20des%20syst%C3%A8mes%20-%20Introduction%20a%20powershell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration des systèmes - Situation 3 - Introduction a powershell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BTS%20SIO%20BLOC%202%20AdminSys%20-%20Situation%205%20%E2%80%93%20Parametrage%20et%20s%C3%A9curisation%20du%20service%20AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contexte : CUB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BTS%20SIO%20BLOC%202%20AdminSys%20-%20Situation4%20-%20Powershell%20-%20Parametrage%20DHCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration des systèmes - Situation 4 – Powershell - Parametrage DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HugoGuignard%20-%20Administration%20des%20system%20-%20Mise%20en%20place%20et%20d%C3%A9couverte%20d%E2%80%99un%20environnement%20de%20d%C3%A9veloppement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mise en place et découverte d’un environnement de développement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration des systèmes - Situation 1 – Solution d'aministration sécurisé à distance d'un serveur Windows - SSH et RDP
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration des systèmes - Situation 1 – Solution d'aministration sécurisé à distance d'un serveur Windows - SSH et RDP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sommaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sommaire
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-realiser-un-sysprep-afin-de-reinitialiser-le-sid-de-los-windows-2019" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1 : Réaliser un « sysprep » afin de réinitialiser le SID de l'OS Windows 2019
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-changer-le-nom-de-votre-serveur-seveurprimairex-x1-pour-letudiant-1-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2 : Changer le nom de votre serveur : SeveurPrimaireX (X=1 pour l'étudiant 1, etc.)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-modifier-le-mot-de-passe-du-compte-administrateur-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3 : Modifier le mot de passe du compte administrateur local
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-modifier-le-vlan-et-ladresse-ip-de-votre-serveur-192168yx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4 : Modifier le VLAN et l'adresse IP de votre serveur : 192.168.Y.X
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-5-rediger-la-procedure-dinstallation-de-la-connexion-securisee-a-distance-via-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 5 : Rédiger la procédure d'installation de la connexion sécurisée à distance via SSH
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-6-installer-et-tester-lacces-a-distance-au-serveur-windows2019-via-openssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 6 : Installer et tester l'accès à distance au serveur Windows2019 via OpenSSH
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-7-en-quoi-ssh-assure-lintegrite-des-communications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 7 : En quoi SSH assure l’intégrité des communications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-8-creer-un-nouvel-utilisateur-sous-windows-2019" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 8 : Créer un nouvel utilisateur sous Windows 2019
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-9-tester-ssh-pour-ce-nouvel-utilisateur-et-interdire-administrateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 9 : Tester SSH pour ce nouvel utilisateur et interdire administrateur
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-10-modifier-le-port-ssh-et-ajuster-le-pare-feu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 10 : Modifier le port SSH et ajuster le pare-feu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-11-procedure-disponible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 11 : Procédure disponible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-12-installer-et-tester-lacces-distant-via-rdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 12 : Installer et tester l'accès distant via RDP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-13-securite-du-protocole-rdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 13 : Sécurité du protocole RDP
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sommaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sommaire
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-realiser-un-sysprep-afin-de-reinitialiser-le-sid-de-los-windows-2019" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1 : Réaliser un « sysprep » afin de réinitialiser le SID de l'OS Windows 2019
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-changer-le-nom-de-votre-serveur-seveurprimairex-x1-pour-letudiant-1-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2 : Changer le nom de votre serveur : SeveurPrimaireX (X=1 pour l'étudiant 1, etc.)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-modifier-le-mot-de-passe-du-compte-administrateur-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3 : Modifier le mot de passe du compte administrateur local
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-modifier-le-vlan-et-ladresse-ip-de-votre-serveur-192168yx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4 : Modifier le VLAN et l'adresse IP de votre serveur : 192.168.Y.X
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-5-rediger-la-procedure-dinstallation-de-la-connexion-securisee-a-distance-via-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 5 : Rédiger la procédure d'installation de la connexion sécurisée à distance via SSH
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-6-installer-et-tester-lacces-a-distance-au-serveur-windows2019-via-openssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 6 : Installer et tester l'accès à distance au serveur Windows2019 via OpenSSH
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-7-en-quoi-ssh-assure-lintegrite-des-communications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 7 : En quoi SSH assure l’intégrité des communications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-8-creer-un-nouvel-utilisateur-sous-windows-2019" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 8 : Créer un nouvel utilisateur sous Windows 2019
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-9-tester-ssh-pour-ce-nouvel-utilisateur-et-interdire-administrateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 9 : Tester SSH pour ce nouvel utilisateur et interdire administrateur
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-10-modifier-le-port-ssh-et-ajuster-le-pare-feu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 10 : Modifier le port SSH et ajuster le pare-feu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-11-procedure-disponible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 11 : Procédure disponible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-12-installer-et-tester-lacces-distant-via-rdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 12 : Installer et tester l'accès distant via RDP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-13-securite-du-protocole-rdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 13 : Sécurité du protocole RDP
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="administration-des-systemes-situation-1-solution-daministration-securise-a-distance-dun-serveur-windows-ssh-et-rdp">Administration des systèmes - Situation 1 – Solution d'aministration sécurisé à distance d'un serveur Windows - SSH et RDP</h1>
+<p><strong>Contexte :</strong> CUB<br />
+<strong>Réalisé par :</strong> Lucien BESCOS</p>
+<p><strong>Date de réalisation :</strong> 18/10/2025</p>
+<hr />
+<p><img alt="Logo CUB" src="../../../medias/logocub.png" /></p>
+<h2 id="sommaire">Sommaire</h2>
+<ul>
+<li><a href="#question-1-réaliser-un-sysprep-afin-de-réinitialiser-le-sid-de-los-windows-2019">Question 1 : Sysprep Windows 2019</a></li>
+<li><a href="#question-2-changer-le-nom-de-votre-serveur-seveurprimairex-x1-pour-létudiant-1-etc">Question 2 : Changer le nom du serveur</a></li>
+<li><a href="#question-3-modifier-le-mot-de-passe-du-compte-administrateur-local-pour-respecter-les-recommandations-de-lansi">Question 3 : Modifier le mot de passe administrateur</a></li>
+<li><a href="#question-4-modifier-le-vlan-et-ladresse-ip-de-votre-serveur-192168yx">Question 4 : Modifier le VLAN et l'adresse IP</a></li>
+<li><a href="#question-5-rédiger-la-procédure-dinstallation-de-la-connexion-sécurisée-à-distance-via-ssh">Question 5 : Connexion sécurisée via SSH</a></li>
+<li><a href="#question-6-installer-et-tester-laccès-à-distance-au-serveur-windows2019-via-openssh">Question 6 : Accès distant via OpenSSH</a></li>
+<li><a href="#question-7-en-quoi-lutilisation-du-protocole-ssh-permet-til-dassurer-une-intégrité-des-communications">Question 7 : Sécurité SSH</a></li>
+<li><a href="#question-8-créer-un-nouvel-utilisateur-sous-windows-2019">Question 8 : Création d'un utilisateur</a></li>
+<li><a href="#question-9-tester-la-connexion-ssh-pour-ce-nouvel-utilisateur-puis-interdire-une-connexion-ssh-avec-lutilisateur-administrateur">Question 9 : Tester SSH et interdire administrateur</a></li>
+<li><a href="#question-10-modifier-le-port-découte-par-défaut-du-service-ssh-en-222-et-réaliser-les-modifications-sur-le-pare-feu-windows-en-conséquences">Question 10 : Modifier port SSH et pare-feu</a></li>
+<li><a href="#question-11-procédure-réalisée-et-disponible">Question 11 : Procédure disponible</a></li>
+<li><a href="#question-12-installer-et-tester-laccès-à-distance-au-serveur-windows2019-via-le-protocole-rdp">Question 12 : Accès distant RDP</a></li>
+<li><a href="#question-13-en-quoi-le-protocole-rdp-permet-dassurer-une-gestion-sécurisée-du-bureau-à-distance">Question 13 : Sécurité RDP</a></li>
+</ul>
+<hr />
+<h2 id="question-1-realiser-un-sysprep-afin-de-reinitialiser-le-sid-de-los-windows-2019">Question 1 : Réaliser un « sysprep » afin de réinitialiser le SID de l'OS Windows 2019</h2>
+<ul>
+<li>Se rendre dans <code>Disque local/Windows/System32/Sysprep</code></li>
+</ul>
+<p><img alt="Situation 1" src="../../../medias/sit1_1.png" /></p>
+<ul>
+<li>Exécuter le fichier « sysprep »</li>
+</ul>
+<p><img alt="Situation 1" src="../../../medias/sit1_2.png" /></p>
+<ul>
+<li>Vérifier dans l’invite de commande:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>whoami<span class="w"> </span>/user
+</span></code></pre></div>
+<p><img alt="Situation 1" src="../../../medias/sit1_3.png" /></p>
+<hr />
+<h2 id="question-2-changer-le-nom-de-votre-serveur-seveurprimairex-x1-pour-letudiant-1-etc">Question 2 : Changer le nom de votre serveur : SeveurPrimaireX (X=1 pour l'étudiant 1, etc.)</h2>
+<ul>
+<li>Dans le menu « Serveur local », cliquer sur le nom du serveur d’origine.</li>
+</ul>
+<p><img alt="Situation 1" src="../../../medias/sit1_4.png" /></p>
+<ul>
+<li>Nouveau nom : <code>SeveurPrimaire8</code> → faire <code>OK</code>.</li>
+</ul>
+<hr />
+<h2 id="question-3-modifier-le-mot-de-passe-du-compte-administrateur-local">Question 3 : Modifier le mot de passe du compte administrateur local</h2>
+<ul>
+<li>Aller dans les paramètres du compte local admin → section « mot de passe » → cliquer sur « modifier »  </li>
+<li>Nouveau mot de passe :  </li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Jesuisenbtssio2025*-
+</span></code></pre></div>
+<h2 id="_1"><img alt="Situation 1" src="../../../medias/sit1_5.png" /></h2>
+<h2 id="question-4-modifier-le-vlan-et-ladresse-ip-de-votre-serveur-192168yx">Question 4 : Modifier le VLAN et l'adresse IP de votre serveur : 192.168.Y.X</h2>
+<ul>
+<li>Cliquer sur l’IP par défaut</li>
+</ul>
+<p><img alt="Situation 1" src="../../../medias/sit1_6.png" /></p>
+<ul>
+<li>Clic droit sur « Ethernet » → Propriété → IPV4</li>
+</ul>
+<p><strong>Configurations réseau :</strong></p>
+<ul>
+<li>Lucien : 4.1  </li>
+<li>Hugo : 4.51</li>
+</ul>
+<p><img alt="Situation 1" src="../../../medias/sit1_7.png" /></p>
+<p><strong>Résultats ping depuis la machine cliente Windows :</strong>  </p>
+<ul>
+<li>Serveur Lucien  </li>
+<li>Serveur Hugo</li>
+</ul>
+<p><img alt="Situation 1" src="../../../medias/sit1_8.png" /></p>
+<p>Resultats et test
+Résultats ping de la machine cliente Windows vers les serveurs</p>
+<ul>
+<li>Serveur Lucien</li>
+</ul>
+<p><img alt="Situation 1" src="../../../medias/sit1_9.png" /></p>
+<ul>
+<li>Serveur Hugo</li>
+</ul>
+<p><img alt="Situation 1" src="../../../medias/sit1_10.png" /></p>
+<hr />
+<h2 id="question-5-rediger-la-procedure-dinstallation-de-la-connexion-securisee-a-distance-via-ssh">Question 5 : Rédiger la procédure d'installation de la connexion sécurisée à distance via SSH</h2>
+<ul>
+<li>Procédure réalisée et disponible.</li>
+</ul>
+<hr />
+<h2 id="question-6-installer-et-tester-lacces-a-distance-au-serveur-windows2019-via-openssh">Question 6 : Installer et tester l'accès à distance au serveur Windows2019 via OpenSSH</h2>
+<p><img alt="Situation 1" src="../../../medias/sit1_11.png" /></p>
+<ul>
+<li>Ne pas oublier de changer le port par 222 avec :  </li>
+</ul>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>-p<span class="w"> </span><span class="m">222</span>
+</span></code></pre></div>
+<img alt="Situation 1" src="../../../medias/sit1_12.png" /></p>
+<hr />
+<h2 id="question-7-en-quoi-ssh-assure-lintegrite-des-communications">Question 7 : En quoi SSH assure l’intégrité des communications</h2>
+<ul>
+<li>SSH chiffre les données échangées, empêchant l’interception ou la modification par des tiers.  </li>
+<li>Première connexion SSH demande "yes/no" pour valider la clé publique du serveur afin d’éviter les attaques « man-in-the-middle ».  </li>
+</ul>
+<hr />
+<h2 id="question-8-creer-un-nouvel-utilisateur-sous-windows-2019">Question 8 : Créer un nouvel utilisateur sous Windows 2019</h2>
+<ul>
+<li>Nom : <code>adminssh</code>  </li>
+<li>Mot de passe : <code>Cub_Admin_Ssh_007</code></li>
+</ul>
+<hr />
+<h2 id="question-9-tester-ssh-pour-ce-nouvel-utilisateur-et-interdire-administrateur">Question 9 : Tester SSH pour ce nouvel utilisateur et interdire administrateur</h2>
+<ul>
+<li>Tester la connexion SSH pour <code>adminssh</code>  </li>
+<li>Interdire la connexion SSH pour l’utilisateur <code>administrateur</code>.</li>
+</ul>
+<h2 id="_2"><img alt="Situation 1" src="../../../medias/sit1_13.png" /></h2>
+<h2 id="question-10-modifier-le-port-ssh-et-ajuster-le-pare-feu">Question 10 : Modifier le port SSH et ajuster le pare-feu</h2>
+<ul>
+<li>Modifier le port d’écoute par défaut du service SSH en <code>222</code>  </li>
+<li>Adapter les règles sur le pare-feu Windows en conséquence.</li>
+</ul>
+<p><img alt="Situation 1" src="../../../medias/sit1_14.png" />
+  <img alt="Situation 1" src="../../../medias/sit1_15.png" /></p>
+<hr />
+<h2 id="question-11-procedure-disponible">Question 11 : Procédure disponible</h2>
+<ul>
+<li>Procédure réalisée et disponible.</li>
+</ul>
+<hr />
+<h2 id="question-12-installer-et-tester-lacces-distant-via-rdp">Question 12 : Installer et tester l'accès distant via RDP</h2>
+<ul>
+<li>Procédure réalisée et testée.</li>
+</ul>
+<p><img alt="Situation 1" src="../../../medias/sit1_16.png" /></p>
+<p><img alt="Situation 1" src="../../../medias/sit1_17.png" /></p>
+<p><img alt="Situation 1" src="../../../medias/sit1_18.png" /></p>
+<hr />
+<h2 id="question-13-securite-du-protocole-rdp">Question 13 : Sécurité du protocole RDP</h2>
+<p>Le protocole RDP (Remote Desktop Protocol) permet une gestion sécurisée du bureau à distance en chiffrant les données échangées entre l’utilisateur et l’ordinateur distant. Cela protège les informations (écran, clavier, souris, etc.) contre les interceptions.
+Il utilise aussi des mécanismes d’authentification (nom d’utilisateur, mot de passe, voire certificat ou double authentification) pour s'assurer que seule une personne autorisée peut accéder au bureau distant.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../HugoGuignard%20-%20Administration%20des%20system%20-%20Mise%20en%20place%20et%20d%C3%A9couverte%20d%E2%80%99un%20environnement%20de%20d%C3%A9veloppement/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Mise en place et découverte d’un environnement de développement">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Mise en place et découverte d’un environnement de développement
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Licence CC 4.0 FR BY-NC-SA - 2025 D. Balny et Q. Demoulière - Lycée Paul-Louis Courier
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.footer", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
