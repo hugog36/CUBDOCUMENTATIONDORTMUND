@@ -1,7 +1,5 @@
 # Mise en place et découverte d’un environnement de développement
-**Auteur :** Hugo Guignard  
-**Contexte :** CUB  
-**Formation :** BTS SIO SISR 2025/2026  
+  
 
 ---
 

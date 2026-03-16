@@ -1,9 +1,5 @@
-#  Administration des systèmes - Situation 1 – Solution d'aministration sécurisé à distance d'un serveur Windows - SSH et RDP
+#Solution d'aministration sécurisé à distance d'un serveur Windows - SSH et RDP
 
-**Contexte :** CUB  
-**Réalisé par :** Lucien BESCOS
-
-**Date de réalisation :** 18/10/2025
 
 ---
 
