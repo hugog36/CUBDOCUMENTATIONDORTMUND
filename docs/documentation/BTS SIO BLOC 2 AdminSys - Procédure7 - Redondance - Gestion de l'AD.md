@@ -30,7 +30,7 @@ On fait procéder à la suppression
 ![](../../medias/AD_redondant7.png)
 
 on mais le mot de passe admin et ensuite on va faire retrogration pour pouvoir le supprimez
-## **On peut faire maintenant la configuration**
+# **On peut faire maintenant la configuration**
 ![](../../medias/AD_redondant8.jpeg)
 
 On va dans le petit drapeau et on fait promouvoir 
@@ -50,4 +50,4 @@ On mais le mot de passe pour une récupération future
 On met suivant sur toute les étapes jusqu’à arriver à cette page et on fait installer et normalement il redémarre et sa fonctionne.
 
 Sur le serveur primaire mettre le DNS du serveur de redondance et sur le serveur de redondance mettre ceelle du serveur primaire 
-BTS SIO – BLOC2 – *fiche procédure n°5 – Configuration Failover Windows Server 2012*Page 4![](../../medias/AD_redondant12.png)
+![](../../medias/AD_redondant12.png)
