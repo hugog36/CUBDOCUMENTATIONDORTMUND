@@ -103,5 +103,3 @@ Il offre une sécurité plus élevée avec des clés plus courtes, ce qui le ren
 **SHA256**, car SHA1 est aujourd'hui obsolète et n'est plus sécurisé.
 
 ---
-**SIO2 BLOC 2 – Contexte : CUB – Admin SYS**
-![Footer](../../medias/Aspose.Words.4d68b082-a97e-42d4-96c5-5d09b1f09955.006.png)
