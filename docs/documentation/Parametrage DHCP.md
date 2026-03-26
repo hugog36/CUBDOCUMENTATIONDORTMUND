@@ -1,16 +1,13 @@
-﻿# 🛠️ Administration & Sécurisation Infrastructure Windows Server
-
-> **Projet :** Redondance AD DS, Stratégies GPO (MFA) et Automatisation DHCP.
-> **Date :** 26 Mars 2026
-> **Auteur :** [Ton Nom/Pseudo]
+﻿# 🛠️ Infrastructure Active Directory & Services Réseaux
+> **Documentation Technique Complète** | Administration, Sécurisation et Automatisation.
 
 ---
 
 ## 📖 Sommaire
 1. [Redondance Active Directory (AD DS)](#1-redondance-active-directory-ad-ds)
 2. [Sécurisation MFA & Modèle de Tiering](#2-sécurisation-mfa--modèle-de-tiering)
-3. [Configuration et Automatisation DHCP](#3-configuration-et-automatisation-dhcp)
-4. [Maintenance et Diagnostic](#4-maintenance-et-diagnostic)
+3. [Guide Complet : Configuration DHCP via PowerShell](#3-guide-complet--configuration-dhcp-via-powershell)
+4. [Maintenance et Diagnostic Rapide](#4-maintenance-et-diagnostic-rapide)
 
 ---
 
@@ -18,88 +15,144 @@
 *Procédure de nettoyage et de promotion du serveur secondaire.*
 
 ### 1.1. Désinstallation du rôle existant
-Avant de promouvoir un nouveau contrôleur de domaine (DC) en remplacement d'un ancien, il est nécessaire de procéder à un nettoyage propre de l'ancien rôle.
+Avant de promouvoir un serveur en tant que contrôleur de domaine secondaire, il faut supprimer l'ancien rôle proprement.
 
-* **Suppression des rôles :** Via le *Gestionnaire de serveur*, allez dans `Gérer` > `Supprimer des rôles et fonctionnalités`.
-* **Rétrogradation :** Cliquez impérativement sur le lien bleu **Rétrograder ce contrôleur de domaine** avant de supprimer le binaire du rôle.
-* **Forçage (si nécessaire) :** En cas de perte de connectivité avec le DC principal, cochez **Forcer la suppression de ce contrôleur de domaine** pour nettoyer la base locale.
+1. **Suppression :** Via le *Gestionnaire de serveur* > `Gérer` > `Supprimer des rôles et fonctionnalités`.
+2. **Rétrogradation :** Cliquez sur le lien **Rétrograder ce contrôleur de domaine**.
+3. **Forçage :** Si le partenaire est hors ligne, cochez **Forcer la suppression de ce contrôleur de domaine** pour nettoyer les métadonnées locales.
 
 ---
 
 ## 2. Sécurisation MFA & Modèle de Tiering
-*Mise en place de l'authentification forte via certificats X.509 et isolation des privilèges.*
+*Renforcement de l'authentification et isolation des privilèges.*
 
 ### 🔐 Authentification Forte (MFA)
-Pour pallier la vulnérabilité des mots de passe simples (phishing, attaques par dictionnaire), nous implémentons une solution basée sur la PKI (Public Key Infrastructure) :
-* **Certificat X.509 :** Utilisation de clés de sécurité physiques (type Yubikey). 
-* **Avantage :** La clé privée est générée dans la puce et ne peut pas être extraite, contrairement à un code SMS ou TOTP.
+L'utilisation de **certificats X.509** (via Yubikey ou Smart Cards) est privilégiée :
+* **Clé privée non extractible :** Contrairement aux mots de passe, l'identité est liée à un objet physique.
+* **Protection :** Immunise contre le phishing et les attaques par force brute.
 
-### 🏛️ Modèle de Tiering (Architecture de Sécurité)
-Afin de limiter les mouvements latéraux en cas d'attaque, l'administration est segmentée en trois niveaux :
+### 🏛️ Modèle de Tiering
+L'administration est segmentée en trois niveaux pour stopper la compromission totale en cas d'attaque sur un poste utilisateur :
 
-| Tier | Périmètre | Description |
+| Tier | Périmètre | Cibles |
 | :--- | :--- | :--- |
-| **Tier 0** | Identité | Contrôleurs de domaine, PKI, serveurs de fédération. |
-| **Tier 1** | Applications | Serveurs membres, SQL, IIS, serveurs de fichiers. |
-| **Tier 2** | Utilisateurs | Postes de travail et périphériques finaux. |
-
-> **Règle d'or :** Un administrateur Tier 0 ne doit jamais se connecter sur une machine Tier 1 ou Tier 2.
+| **Tier 0** | Identité | Contrôleurs de domaine, PKI, AD Connect. |
+| **Tier 1** | Applications | Serveurs de fichiers, SQL, serveurs métiers. |
+| **Tier 2** | Utilisateurs | Postes de travail, PC portables. |
 
 ---
 
-## 3. Configuration et Automatisation DHCP
-*Déploiement des étendues réseau via PowerShell.*
+## 3. Guide Complet : Configuration DHCP via PowerShell
+*Toutes les commandes pour administrer le service de A à Z.*
 
-Ce script permet une configuration reproductible et limite les erreurs humaines lors de la création des scopes pour les différents VLANs.
-
-### Script PowerShell de configuration
-
+### 3.1. Installation et Initialisation
 ```powershell
-<#
-.SYNOPSIS
-    Configuration des étendues et de la sécurité du serveur DHCP.
-#>
+# Installer le rôle et les outils d'administration
+Install-WindowsFeature DHCP -IncludeManagementTools
 
-# --- 1. VARIABLES D'ADRESSAGE ---
-$ScopeClients = @{
-    Name      = "VLAN_Clients"
-    Start     = "192.168.4.129"
-    End       = "192.168.4.189"
-    Mask      = "255.255.255.192"
-}
+# Autoriser le serveur dans l'Active Directory
+Add-DhcpServerInDC -DnsName "SRV-DHCP-01.contoso.local"
 
-$ScopeAdmin = @{
-    Id        = "192.168.4.192"
-    Name      = "VLAN_Admin_Systeme"
-    Start     = "192.168.4.193"
-    End       = "192.168.4.205"
-    Mask      = "255.255.255.240"
-}
+# Créer les groupes de sécurité DHCP
+Add-DhcpServerSecurityGroup
 
-# --- 2. CRÉATION DES ÉTENDUES ---
-Write-Host "[*] Création des étendues DHCP..." -ForegroundColor Cyan
+Gemini a dit
+Voici l'intégralité de ta documentation technique regroupée en un seul bloc Markdown.
 
-Add-DhcpServerv4Scope -Name $ScopeClients.Name -StartRange $ScopeClients.Start -EndRange $ScopeClients.End -SubnetMask $ScopeClients.Mask
-Add-DhcpServerv4Scope -Name $ScopeAdmin.Name -StartRange $ScopeAdmin.Start -EndRange $ScopeAdmin.End -SubnetMask $ScopeAdmin.Mask
+Ce fichier unique est conçu pour être ton README.md final sur GitHub. Il couvre la redondance AD DS, la sécurité avancée (MFA/Tiering) et le guide exhaustif des commandes PowerShell pour le DHCP.
 
-# --- 3. EXCLUSIONS ET RÉSERVATIONS ---
-Write-Host "[*] Configuration des exclusions et réservations..." -ForegroundColor Yellow
+Markdown
+# 🛠️ Infrastructure Active Directory & Services Réseaux
+> **Documentation Technique Complète** | Administration, Sécurisation et Automatisation.
 
-# Exclusion des IPs statiques serveurs (195 à 200)
-Add-DhcpServerv4ExclusionRange -ScopeId $ScopeAdmin.Id -StartRange "192.168.4.195" -EndRange "192.168.4.200"
+---
 
-# Réservation pour le poste d'administration principal
-$ResaAdmin = @{
-    ScopeId   = $ScopeAdmin.Id
-    IPAddress = "192.168.4.201"
-    ClientId  = "08-00-27-2D-AB-B4"
-    Name      = "PC-ADMIN-SECURE"
-    Description = "Réservation statique poste administrateur"
-}
-Add-DhcpServerv4Reservation @ResaAdmin
+## 📖 Sommaire
+1. [Redondance Active Directory (AD DS)](#1-redondance-active-directory-ad-ds)
+2. [Sécurisation MFA & Modèle de Tiering](#2-sécurisation-mfa--modèle-de-tiering)
+3. [Guide Complet : Configuration DHCP via PowerShell](#3-guide-complet--configuration-dhcp-via-powershell)
+4. [Maintenance et Diagnostic Rapide](#4-maintenance-et-diagnostic-rapide)
 
-# --- 4. PARAMÈTRES RÉSEAU (BAIL) ---
-# Configuration d'un bail court (4h) pour le VLAN Admin
-Set-DhcpServerv4Scope -ScopeId $ScopeAdmin.Id -LeaseDuration 04:00:00
+---
 
-Write-Host "[OK] Configuration DHCP appliquée." -ForegroundColor Green
+## 1. Redondance Active Directory (AD DS)
+*Procédure de nettoyage et de promotion du serveur secondaire.*
+
+### 1.1. Désinstallation du rôle existant
+Avant de promouvoir un serveur en tant que contrôleur de domaine secondaire, il faut supprimer l'ancien rôle proprement.
+
+1. **Suppression :** Via le *Gestionnaire de serveur* > `Gérer` > `Supprimer des rôles et fonctionnalités`.
+2. **Rétrogradation :** Cliquez sur le lien **Rétrograder ce contrôleur de domaine**.
+3. **Forçage :** Si le partenaire est hors ligne, cochez **Forcer la suppression de ce contrôleur de domaine** pour nettoyer les métadonnées locales.
+
+---
+
+## 2. Sécurisation MFA & Modèle de Tiering
+*Renforcement de l'authentification et isolation des privilèges.*
+
+### 🔐 Authentification Forte (MFA)
+L'utilisation de **certificats X.509** (via Yubikey ou Smart Cards) est privilégiée :
+* **Clé privée non extractible :** Contrairement aux mots de passe, l'identité est liée à un objet physique.
+* **Protection :** Immunise contre le phishing et les attaques par force brute.
+
+### 🏛️ Modèle de Tiering
+L'administration est segmentée en trois niveaux pour stopper la compromission totale en cas d'attaque sur un poste utilisateur :
+
+| Tier | Périmètre | Cibles |
+| :--- | :--- | :--- |
+| **Tier 0** | Identité | Contrôleurs de domaine, PKI, AD Connect. |
+| **Tier 1** | Applications | Serveurs de fichiers, SQL, serveurs métiers. |
+| **Tier 2** | Utilisateurs | Postes de travail, PC portables. |
+
+---
+
+## 3. Guide Complet : Configuration DHCP via PowerShell
+*Toutes les commandes pour administrer le service de A à Z.*
+
+### 3.1. Installation et Initialisation
+```powershell
+# Installer le rôle et les outils d'administration
+Install-WindowsFeature DHCP -IncludeManagementTools
+
+# Autoriser le serveur dans l'Active Directory
+Add-DhcpServerInDC -DnsName "SRV-DHCP-01.contoso.local"
+
+# Créer les groupes de sécurité DHCP
+Add-DhcpServerSecurityGroup
+
+
+###3.2. Gestion des Étendues (Scopes)
+
+# Créer une étendue
+Add-DhcpServerv4Scope -Name "VLAN_Prod" -StartRange 192.168.10.100 -EndRange 192.168.10.200 -SubnetMask 255.255.255.0 -State Active
+
+# Modifier la durée du bail (ici 8 heures)
+Set-DhcpServerv4Scope -ScopeId 192.168.10.0 -LeaseDuration 08:00:00
+
+# Configurer la passerelle et le DNS
+Set-DhcpServerv4OptionValue -ScopeId 192.168.10.0 -Router 192.168.10.1 -DnsServer 192.168.1.10
+
+###3.3. Exclusions et Réservations
+
+# Exclure une plage d'IP (ex: pour des serveurs en IP fixe)
+Add-DhcpServerv4ExclusionRange -ScopeId 192.168.10.0 -StartRange 192.168.10.1 -EndRange 192.168.10.10
+
+# Créer une réservation (IP fixe liée à la MAC)
+Add-DhcpServerv4Reservation -ScopeId 192.168.10.0 -IPAddress 192.168.10.50 -ClientId "00-1A-2B-3C-4D-5E" -Name "Imprimante-RH"
+
+
+###3.4. Sécurité et Filtres MAC
+
+# Activer la liste blanche (seuls les PC listés auront une IP)
+Set-DhcpServerv4FilterList -Allow $true
+
+# Ajouter un appareil à la liste blanche
+Add-DhcpServerv4Filter -List Allow -MemberId "00-11-22-33-44-55" -Description "PC-Direction"
+
+###3.5. Sauvegarde et Export
+
+# Exporter toute la configuration vers un fichier XML
+Export-DhcpServer -File "C:\Backup\DHCP_Full.xml"
+
+# Importer la configuration
+Import-DhcpServer -File "C:\Backup\DHCP_Full.xml" -BackupPath "C:\Backup\Temp" -Force
