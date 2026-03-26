@@ -15,6 +15,7 @@ Pour mettre en place une redondance propre, il est nécessaire de désinstaller 
 <br>
 
 ![Accès au menu de suppression](../../medias/AD_redondant1.png)
+<br>
 *Accès au menu Gérer du Gestionnaire de serveur*
 
 <br>
@@ -24,6 +25,7 @@ Pour mettre en place une redondance propre, il est nécessaire de désinstaller 
 <br>
 
 ![Décocher AD DS](../../medias/AD_redondant2.png)
+<br>
 *Désélection du rôle Services AD DS*
 
 <br>
@@ -41,6 +43,7 @@ Pour mettre en place une redondance propre, il est nécessaire de désinstaller 
 <br>
 
 ![Lien de rétrogradation](../../medias/AD_redondant5.png)
+<br>
 *Cliquer sur "Rétrograder ce contrôleur de domaine"*
 
 <br>
@@ -83,6 +86,7 @@ Une fois le serveur redémarré et sain, nous allons l'ajouter au domaine exista
 <br>
 
 ![Infos identification](../../medias/AD_redondant10.png)
+<br>
 *Saisie du domaine et des informations d'identification*
 
 <br>
@@ -92,6 +96,7 @@ Une fois le serveur redémarré et sain, nous allons l'ajouter au domaine exista
 <br>
 
 ![Mot de passe DSRM](../../medias/AD_redondant11.jpeg)
+<br>
 *Ce mot de passe est vital en cas de crash de l'AD*
 
 <br>
