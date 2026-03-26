@@ -1,79 +1,60 @@
-﻿# **Mise en place de la redondance des AD**
-## **Désinstallation du deuxièmes AD DS**
+﻿# Mise en place de la redondance Active Directory (AD DS)
 
-Pour pouvoir effectuer la redondance il va falloir désinstaller le deuxièmes AD DS pour le réinstaller 
+Ce document explique comment préparer et configurer un second contrôleur de domaine pour assurer la haute disponibilité de l'annuaire.
 
-![](../../medias/AD_redondant1.png)
+---
 
-On va faire supprimer des rôles et fonctionnalité 
+## 1. Désinstallation de l'ancien rôle AD DS
+*Note : Pour une redondance propre, il est parfois nécessaire de repartir sur une base saine en désinstallant le rôle existant sur le futur serveur secondaire.*
 
+### Étapes de suppression :
+1. Dans le **Gestionnaire de serveur**, cliquez sur **Gérer** > **Supprimer des rôles et fonctionnalités**.
+   ![Capture d'écran](../../medias/AD_redondant1.png)
 
-![](../../medias/AD_redondant2.png)
+2. Sélectionnez le serveur cible et décochez **Services AD DS**.
+   ![Capture d'écran](../../medias/AD_redondant2.png)
+   ![Capture d'écran](../../medias/AD_redondant3.png)
 
+3. Cliquez sur **Supprimer**. Un message d'erreur apparaîtra car le serveur est encore un contrôleur de domaine : cliquez sur **Rétrograder ce contrôleur de domaine**.
+   ![Capture d'écran](../../medias/AD_redondant4.png)
+   ![Capture d'écran](../../medias/AD_redondant5.png)
 
-on sélectionne AD DS pour le supprimez 
+4. Cochez la case **Forcer la suppression de ce contrôleur de domaine**, puis cliquez sur **Suivant**.
+   ![Capture d'écran](../../medias/AD_redondant6.png)
 
+5. Confirmez en cliquant sur **Procéder à la suppression**.
+   ![Capture d'écran](../../medias/AD_redondant7.png)
 
-![](../../medias/AD_redondant3.png)
+6. Saisissez le mot de passe Administrateur local, puis lancez la **Rétrogradation**. Le serveur va redémarrer.
 
+---
 
-on fait supprimez
+## 2. Configuration de la redondance (Promotion)
 
+Une fois le serveur prêt, nous allons le promouvoir comme réplica du domaine existant.
 
-![](../../medias/AD_redondant4.png)
+### Étapes de promotion :
+1. Dans le **Gestionnaire de serveur**, cliquez sur le drapeau de notification (triangle jaune) et choisissez **Promouvoir ce serveur en contrôleur de domaine**.
+   ![Capture d'écran](../../medias/AD_redondant8.jpeg)
+   ![Capture d'écran](../../medias/AD_redondant9.png)
 
+2. Sélectionnez **Ajouter un contrôleur de domaine à un domaine existant**.
+3. Renseignez le nom du domaine et les informations d'identification :
+   * **Utilisateur :** `Administrateur@votre-domaine.local`
+   * **Mot de passe :** `CubCub_007` (par exemple)
+   ![Capture d'écran](../../medias/AD_redondant10.png)
 
-Il faut faire rétrograder le contrôleur de domaine
+4. Saisissez le mot de passe de **récupération des services d'annuaire (DSRM)** pour une utilisation future.
+   ![Capture d'écran](../../medias/AD_redondant11.jpeg)
 
+5. Cliquez sur **Suivant** sur toutes les étapes restantes, puis sur **Installer**. Le serveur redémarrera automatiquement.
 
-![](../../medias/AD_redondant5.png)
+---
 
+## 3. Configuration DNS (Post-Installation)
+Pour que la réplication et le basculement fonctionnent, les serveurs doivent pointer l'un vers l'autre pour la résolution DNS :
 
-on sélectionne forcer la suppression 
+* **Sur le serveur primaire :** Mettre l'IP du serveur secondaire en DNS secondaire.
+* **Sur le serveur secondaire :** Mettre l'IP du serveur primaire en DNS primaire.
 
-
-![](../../medias/AD_redondant6.png)
-
-
-On fait procéder à la suppression
-
-
-![](../../medias/AD_redondant7.png)
-
-
-on mais le mot de passe admin et ensuite on va faire retrogration pour pouvoir le supprimez
-
-## **On peut faire maintenant la configuration**
-
-
-![](../../medias/AD_redondant8.jpeg)
-
-
-On va dans le petit drapeau et on fait promouvoir 
-
-
-![](../../medias/AD_redondant9.png)
-
-
-On fait ajouter a un domaine existant et on mais le domaine et dans info identification on mais l’utilisateur admin et mot de passe
-
-
-Pour identifiant mot de passe il faut mettre <Administrateur@local>,dortmund,cub,sioplc,fr CubCub\_007
-
-
-![](../../medias/AD_redondant10.png)
-
-
-On mais le mot de passe pour une récupération future
-
-
-![](../../medias/AD_redondant11.jpeg)
-
-
-On met suivant sur toute les étapes jusqu’à arriver à cette page et on fait installer et normalement il redémarre et sa fonctionne.
-
-
-Sur le serveur primaire mettre le DNS du serveur de redondance et sur le serveur de redondance mettre ceelle du serveur primaire 
-
-
-![](../../medias/AD_redondant12.png)
+![Configuration DNS](../../medias/AD_redondant12.png)
