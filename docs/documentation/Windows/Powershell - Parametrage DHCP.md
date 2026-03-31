@@ -1,36 +1,5 @@
 
-#  Administration des systèmes - Situation 4 – Powershell - Parametrage DHCP
-
-**Contexte :** CUB  
-**Réalisé par :** Lucien BESCOS
-
-**Date de réalisation :** 14/12/2025
-
----
-
-
-![Logo CUB](../../medias/logocub.png)
-
----
-
-## Sommaire
-
-- [Contexte : CUB](#contexte--cub)
-- [Question 1 : Modifier la maquette](#question-1--modifier-la-maquette)
-- [Question 2 : Rédiger la fiche de tests de votre maquette et faire valider celle-ci par votre enseignant](#question-2--rédiger-la-fiche-de-tests-de-votre-maquette-et-faire-valider-celle-ci-par-votre-enseignant)
-- [Question 3 : Activer et paramétrer le service DHCP sur votre serveur ServeurPrimaireX en respectant le cahier des charges ](#question-3--activer-et-paramétrer-le-service-dhcp-sur-votre-serveur-serveurprimairex-en-respectant-le-cahier-des-charges)
-- [Question 4 : Update de la maquette Packet Tracer](#question-4--update-de-la-maquette-packet-tracer)
-- [Question 5 : Méthode de mise en place des deux types de failover](#question-5--méthode-de-mise-en-place-des-deux-types-de-failover)
-- [Question 6 : Mettre en place le Actif/Actif](#question-6--mettre-en-place-le-actifactif)
-- [Question 7 : Fiche tests Actif/Actif](#question-7--fiche-tests-actifactif)
-- [Question 8 : Mise en place du Actif/Passif](#question-8--mise-en-place-du-actifpassif)
-- [Question 9 : Fiche tests Actif/Passif](#question-9--fiche-tests-actifpassif)
-- [Question 10 : Note sur les vulnérabilités avérées du service DHCP](#question-10--note-sur-les-vulnérabilités-avérées-du-service-dhcp)
-  - [DHCP Starvation (épuisement d’adresses IP)](#dhcp-starvation-épuisement-dadresses-ip)
-  - [Rogue DHCP (serveur DHCP illégitime)](#rogue-dhcp-serveur-dhcp-illégitime)
-- [Conclusion](#conclusion)
-
----
+#  Powershell - Parametrage DHCP
 
 
 **4ième situation - « Paramétrage et sécurisation du service DHCP »**

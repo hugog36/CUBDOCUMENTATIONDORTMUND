@@ -1,11 +1,11 @@
-﻿# 📂 Situation 5 : Paramétrage et sécurisation du service AD
+﻿Situation 5 : Paramétrage et sécurisation du service AD
 **Contexte :** CUB (Agence d'Anvers)  
 **Réalisé par :** Lucien BESCOS  
 **Système :** Windows Server 2019
 
 ---
 
-## 🏗️ A. Installation des services AD DS
+##A. Installation des services AD DS
 
 ### Question 1 : Installation et promotion
 L'installation du rôle **AD DS** (Active Directory Domain Services) a été réalisée via le Gestionnaire de serveur, suivie de la promotion du serveur en tant que contrôleur de domaine.
@@ -27,7 +27,7 @@ L'installation du rôle **AD DS** (Active Directory Domain Services) a été ré
 
 ---
 
-## ⚙️ B. Paramétrage de l'Active Directory
+##B. Paramétrage de l'Active Directory
 
 ### Question 6 : Unités d'Organisation (OU)
 * **Action :** Création d'une nouvelle Unité d'Organisation pour structurer les ressources.
@@ -58,7 +58,7 @@ L'installation du rôle **AD DS** (Active Directory Domain Services) a été ré
 
 ---
 
-## 💻 C. Gestion de l'AD via PowerShell (Questions 12 & 13)
+##C. Gestion de l'AD via PowerShell (Questions 12 & 13)
 
 ### 1. Gestion des Unités d'Organisation et Ordinateurs
 ```powershell
