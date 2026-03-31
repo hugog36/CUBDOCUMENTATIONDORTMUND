@@ -1,29 +1,5 @@
-# Context CUB - Situation 0 – Tables d'addressage / NAT / Routage / Configuration des élements d'interconnexions 
+#Tables d'addressage / NAT / Routage / Configuration des élements d'interconnexions 
 
-**Contexte :** CUB  
-**Réalisé par :** Lucien BESCOS  
-
-**Date de réalisation :** 18/10/2025
-
----
-
-
-![LogocUB](../medias/logocub.png)
-
-
-##  Sommaire
-
-- [Contexte : CUB](#contexte--cub)
-- [Plan d’adressage](#plan-dadressage)
-- [Table de routage – Pare-feu](#table-de-routage--pare-feu)
-- [Table de routage – Multilayer](#table-de-routage--multilayer)
-- [Table de routage NAT](#table-de-routage-nat)
-- [Commandes effectuées sur les équipements réseau](#commandes-effectuées-sur-les-équipements-réseau)
-  - [Switch Layer 2](#switch-layer-2)
-  - [Switch Layer 3](#switch-layer-3)
-  - [Pare-feu](#pare-feu)
-
----
 
 ##  Contexte : CUB
 
